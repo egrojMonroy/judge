@@ -4,6 +4,11 @@
     margin: auto;
     height: 20%;
 }
+.create-problem {
+    width: 60%;
+    margin: auto; 
+
+}
 .form-group {
     padding: 10px 40px 50px 40px;
 }
@@ -15,4 +20,28 @@
 }
 .right {
     float: right;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #3333338c !important;
+}
+.side-part {
+    width: 90% !important;
+}
+.inline {
+    display: flex;
+    padding: 0px 0px 15px 0px;
+}
+.btn-right {
+    padding: 0px 10px 0px 30px;
+    margin-left: 1%;
+    width: 10%;
+}
+.noline {
+    display: block;
+    margin-right: 1%;
+}
+.small-input {
+    height: 25px !important;
+    width: 70px !important;
+    padding: 0px 5px 0px 5px !important;
 }
