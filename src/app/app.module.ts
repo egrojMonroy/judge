@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { CreateProblemComponent } from './create-problem/create-problem.component';
 import { StatusComponent } from './status/status.component';
+import { UploadProblemComponent } from './upload-problem/upload-problem.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { StatusComponent } from './status/status.component';
     NavbarComponent,
     SignUpComponent,
     CreateProblemComponent,
-    StatusComponent
+    StatusComponent,
+    UploadProblemComponent
   ],
   imports: [
     BrowserModule
