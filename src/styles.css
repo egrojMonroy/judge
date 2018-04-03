@@ -1,6 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 .login {
-    width: 20%;
+    width: 30%;
     margin: auto;
-    
+    height: 20%;
+}
+.form-group {
+    padding: 10px 40px 50px 40px;
+}
+.padding-top {
+    padding: 35px 0px 0px 0px;
+}
+.jumbotron {
+    padding-bottom: 5px !important;
+}
+.right {
+    float: right;
 }
