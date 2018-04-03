@@ -7,6 +7,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { CreateProblemComponent } from './create-problem/create-problem.component';
+import { StatusComponent } from './status/status.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { CreateProblemComponent } from './create-problem/create-problem.componen
     SignInComponent,
     NavbarComponent,
     SignUpComponent,
-    CreateProblemComponent
+    CreateProblemComponent,
+    StatusComponent
   ],
   imports: [
     BrowserModule

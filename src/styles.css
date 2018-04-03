@@ -7,7 +7,15 @@
 .create-problem {
     width: 60%;
     margin: auto; 
-
+}
+.status {
+    width: 75%;
+    margin: auto;
+}
+.center { 
+    margin: auto;
+    width: 80%;
+    padding: 10px;
 }
 .form-group {
     padding: 10px 40px 50px 40px;
