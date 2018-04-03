@@ -7,11 +7,13 @@
 .create-problem {
     width: 60%;
     margin: auto; 
+    background: contain;
 }
 .add-problem {
     width: 60%;
     height: 700px;
     margin: auto;
+    
 }
 .status {
     width: 75%;

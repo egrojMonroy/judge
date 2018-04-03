@@ -9,6 +9,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { CreateProblemComponent } from './create-problem/create-problem.component';
 import { StatusComponent } from './status/status.component';
 import { UploadProblemComponent } from './upload-problem/upload-problem.component';
+import { ListProblemComponent } from './list-problem/list-problem.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { UploadProblemComponent } from './upload-problem/upload-problem.componen
     SignUpComponent,
     CreateProblemComponent,
     StatusComponent,
-    UploadProblemComponent
+    UploadProblemComponent,
+    ListProblemComponent
   ],
   imports: [
     BrowserModule
