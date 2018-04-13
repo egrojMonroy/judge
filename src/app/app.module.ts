@@ -11,12 +11,18 @@ import { UploadProblemComponent } from './upload-problem/upload-problem.componen
 import { ListProblemComponent } from './list-problem/list-problem.component';
 import { ListContestComponent } from './list-contest/list-contest.component';
 import { TabsModule } from 'ngx-bootstrap';
+import { CreateComponent } from './create/create.component';
+import { CreateContestComponent } from './create-contest/create-contest.component';
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+
+
 const appRoutes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'list-problem', component: ListProblemComponent },
   { path: 'upload', component: UploadProblemComponent },
   { path: 'status', component: StatusComponent},
-  { path: 'create', component: CreateProblemComponent},
+  { path: 'create', component: CreateComponent},
   { path: 'sign-up', component: SignUpComponent },
   { path: 'list-contest', component: ListContestComponent },
   { path: 'ranking', component: UploadProblemComponent},
@@ -36,16 +42,19 @@ const appRoutes: Routes = [
     StatusComponent,
     UploadProblemComponent,
     ListProblemComponent,
-    ListContestComponent
+    ListContestComponent,
+    CreateComponent,
+    CreateContestComponent
   ],
   imports: [
+    NgbModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     ),
-    // other im
+    FormsModule,
     BrowserModule,
-    TabsModule.forRoot(),
+    TabsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

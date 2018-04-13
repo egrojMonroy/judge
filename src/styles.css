@@ -39,9 +39,7 @@
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #3333338c !important;
 }
-.side-part {
-    width: 90% !important;
-}
+
 .inline {
     display: flex;
     padding: 0px 0px 15px 0px;
@@ -49,7 +47,6 @@
 .btn-right {
     padding: 0px 10px 0px 30px;
     margin-left: 1%;
-    width: 10%;
 }
 .noline {
     display: block;
@@ -67,3 +64,13 @@
 .regular {
     font-size: large;
 }
+.full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+  }
+  .partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+  }
