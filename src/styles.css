@@ -64,3 +64,6 @@
     cursor: not-allowed !important;
     background-color: #2928280c !important; 
 }
+.regular {
+    font-size: large;
+}

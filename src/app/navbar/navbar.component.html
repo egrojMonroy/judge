@@ -1,22 +1,15 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Juez</a>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="#">Repositorio</a></li>
-        <li><a href="#">Crear </a></li>
-        <li><a href="#">Concursos </a></li>
-        <li><a href="#">Ranking </a></li>
-      </ul>
-    </div>
+  <div class="collapse navbar-collapse" id="navbarColor03">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"><a class="nav-link"  routerLink="/list-problem" routerLinkActive="active">Repositorio</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/create" routerLinkActive="active">Crear </a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/list-contest" routerLinkActive="active">Concursos </a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/ranking" routerLinkActive="active">Ranking </a></li>
+    </ul>
   </div>
 </nav>
