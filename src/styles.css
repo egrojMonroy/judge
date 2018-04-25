@@ -1,11 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+width: 100%;
+}
 .login {
     width: 30%;
     margin: auto;
     height: 20%;
 }
 .create-problem {
-    width: 60%;
+    width: 75%;
     margin: auto; 
     background: contain;
 }
@@ -27,11 +36,18 @@
 .form-group {
     padding: 10px 40px 50px 40px;
 }
+.stop-padding-bottom {
+    padding-bottom: 0px !important; 
+}
 .padding-top {
     padding: 35px 0px 0px 0px;
 }
+.top-cero { 
+    padding-top: 0px !important;            
+}
 .jumbotron {
     padding-bottom: 5px !important;
+    background-color: #f0f0f0 !important;
 }
 .right {
     float: right;
@@ -74,3 +90,32 @@
     border-radius: 32px;
     color: black;
   }
+
+
+.view-problem {
+
+}
+.view-problem .title{
+    font-weight: 700;
+    color: #302d2d;
+}
+.view-problem .subtitle{
+    font-weight: 700;
+    color: #3f3b3b;
+}
+.view-problem .text{
+    font-weight: 400;
+    color: #3a3636;
+    text-align: justify;
+    text-justify: inter-word;
+}
+.content { width: 100%;}
+.content .td { padding: 0 20px; } 
+.content .th { padding: 0 20px; }
+
+
+.inline-div {
+    display:inline-block;
+    width: 48%;
+    resize: none;
+}

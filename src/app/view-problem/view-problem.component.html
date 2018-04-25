@@ -1,0 +1,59 @@
+<div class="jumbotron">
+    <div class="center">
+      <div class="view-problem">
+        <div class="header">
+            <div class="title">
+              <h2>{{problem.name}}</h2>
+            </div>
+            <h6>time limit per test: 2 seconds </h6>
+            <h6>inputstandard input</h6>
+            <h6>outputstandard output</h6>
+        </div>
+        <hr>
+        <div class="body">
+          <div class="text">
+          {{problem.definition}}
+          </div>
+          <br>
+          <div class="subtitle">
+             <h4> Input</h4>
+          </div>
+          <div class="text">
+            {{problem.inputDef}}
+          </div>
+          <br>
+          <div class="subtitle">
+              <h4> Output</h4>
+           </div>
+           <div class="text">
+            {{problem.outputDef}}
+           </div>
+           <br><br>
+           <h4>Sample</h4>
+           <table class="content">
+             <thead>
+               <tr >
+                 <th> Input </th>
+                 <th> Output </th>
+               </tr>
+               <tr>
+                 <td>1<br>1 2 3</td>
+                 <td>4</td>
+               </tr>
+               
+                  
+             </thead>
+           </table>
+           <br><br>
+           <div class="text">
+             Aclaration for test case 1
+           </div>
+      </div>
+
+      <br>
+      <div>
+        <a href="upload"><button type="button" class="btn btn-primary" href="enviar">Enviar</button></a>
+        <button type="button" class="btn btn-danger">Cancelar</button>
+      </div>
+  </div>  
+</div>

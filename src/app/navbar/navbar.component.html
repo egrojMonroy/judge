@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -6,10 +6,27 @@
 
   <div class="collapse navbar-collapse" id="navbarColor03">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item"><a class="nav-link"  routerLink="/list-problem" routerLinkActive="active">Repositorio</a></li>
-      <li class="nav-item"><a class="nav-link" routerLink="/create" routerLinkActive="active">Crear </a></li>
       <li class="nav-item"><a class="nav-link" routerLink="/list-contest" routerLinkActive="active">Concursos </a></li>
+      <li class="nav-item"><a class="nav-link"  routerLink="/problems" routerLinkActive="active">Problemas</a></li>
       <li class="nav-item"><a class="nav-link" routerLink="/ranking" routerLinkActive="active">Ranking </a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/create" routerLinkActive="active">Crear </a></li>
+      <li class="nav-item">
+        <div class="btn-group btn-nav" dropdown>
+          <button dropdownToggle type="button" class="btn dropdown-toggle" tooltip="Account" placement="bottom">
+             <span class="d-md-none nav-title-responsive">Account</span>
+          </button>
+          <ul *dropdownMenu class="dropdown-menu spacio-01" role="menu">
+            <div class="dropdownArrow" style="transform: translateX(80px) rotate(45deg);"></div>
+            <li role="menuitem"><a class="dropdown-item" routerLink="/account/profile"><img src="assets/images/icons/29.svg" width="30px" alt=""> Profile</a></li>
+            <li  role="menuitem"><a class="dropdown-item" routerLink="/account/login"><img src="assets/images/icons/31.svg" width="30px" alt=""> Login</a></li>
+            <li  role="menuitem"><a class="cursor" class="dropdown-item" (click)="logout()"><img src="assets/images/icons/30.svg" width="30px" alt=""> Logout</a></li>
+          </ul>
+        </div>
+      </li>
+
     </ul>
+   
+    
+      <a href="sign-in"><button class="btn btn-secondary my-2 my-sm-0 my-2 my-lg-0" type="submit">Login</button></a>
   </div>
 </nav>

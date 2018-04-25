@@ -1,35 +1,43 @@
-<div class="form-group">
-  <h4>Crear problema</h4>
-  <label class="control-label" for="focusedInput">Nombre del problema</label>
-  <div class="inline">
-    <input class="form-control" type="text" >
-  </div>
-  <label class="control-label" for="focusedInput">Código solución</label>
-  <div class="inline">
-    <input class="form-control col-md-10" id="disabledInput" type="text" placeholder="Código   .cpp   .java" disabled=""> 
-    <span class="btn  btn-outline-info btn-right col-md-2"> Añadir</span>
-  </div>
+<div class =" create-problem " >
+  <div class="form-group" *ngIf="createdProblem;else content">
+    <h4>Crear problema</h4>
+    <label class="control-label" for="focusedInput">Nombre del problema</label>
+    <div class="inline">
+      <input class="form-control" type="text" [(ngModel)]="problem.name">
+    </div>
     
-  <label class="control-label " for="focusedInput">Datos de entrada</label>
-  <div class="inline">
-      <input class="form-control col-md-10" id="disabledInput" type="text" placeholder="Archivos de entrada   .txt   .in" disabled=""> 
-      <span class="btn btn-outline-info btn-right col-md-2"> Añadir</span>
+    <div class="form-group">
+      <label class="control-label" for="focusedInput">Código solución</label>
+      <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" formenctype="multipart/form-data" #fileInput>
+      <small id="fileHelp" class="form-text text-muted">Los archivos tienen que tener la extencion .cpp o .java. Si es java la clase debe ser Main.</small>
+    </div>
+      
+    <hr>
+    
+    <label class="control-label " for="exampleTextarea">Definicion del problema</label>
+    <textarea class="form-control" id="exampleTextarea" rows="8" [(ngModel)]="problem.definition"></textarea>
+    <label class="control-label " for="exampleTextarea">Definicion de la entrada </label>
+    <textarea class="form-control" id="exampleTextarea" rows="5" [(ngModel)]="problem.inputDef" ></textarea>
+    <label class="control-label " for="exampleTextarea">Definicion de la salida </label>
+    <textarea class="form-control" id="exampleTextarea" rows="5" [(ngModel)]="problem.outputDef"></textarea>
+    <hr>
+    <div class="inline">
+        <span style="padding: 0px 10px 0px 0px "> Tiempo:</span>
+        <input class="form-control small-input" type="number" min="0" max="10" value="1">
+        <span style="padding: 0px 10px 0px 10px "> s </span>
+        <span style="padding: 0px 10px 0px 20px "> Dificultad:</span>
+        <input class="form-control small-input" type="number" min="1" max="5" value="1">
+        <span style="padding: 0px 10px 0px 10px "> s </span> 
+    </div>
+    <hr>
+    <div class = "padding-top">
+      <button (click)="createProblem()" class="btn btn-primary btn-lg btn-block">Crear</button>
+    </div>
+    
+    
   </div>
-  <label class="control-label" for="focusedInput">Definición del problema</label>
-  <div class="inline">
-      <input class="form-control  col-md-10" id="disabledInput" type="text" placeholder="Nombre de archivo   .pdf" disabled=""> 
-      <span class=" btn btn-outline-info btn-right col-md-2"> Añadir</span>
-  </div>
-  <div class="inline">
-      <span style="padding: 0px 10px 0px 0px "> Tiempo:</span>
-      <input class="form-control small-input" type="number" min="0" max="10" value="1">
-      <span style="padding: 0px 10px 0px 10px "> s </span>
-      <span style="padding: 0px 10px 0px 20px "> Dificultad:</span>
-      <input class="form-control small-input" type="number" min="1" max="5" value="1">
-      <span style="padding: 0px 10px 0px 10px "> s </span> 
-  </div>
-  <div class = "padding-top">
-    <a href="#" class="btn btn-primary btn-lg btn-block">Crear</a>
-    <a href="#" class="btn btn-link right">ya tienes cuenta - ingresa</a>
-   </div>
-  </div>
+  <ng-template #content> 
+    <app-add-test-cases [problem]="problem" ></app-add-test-cases>
+  </ng-template>
+</div>
+
