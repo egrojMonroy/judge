@@ -10,7 +10,7 @@
             <h6>outputstandard output</h6>
         </div>
         <hr>
-        <div class="body">
+        <div class="body test-cases ">
           <div class="text">
           {{problem.definition}}
           </div>
@@ -32,13 +32,13 @@
            <h4>Sample</h4>
            <table class="content">
              <thead>
-               <tr >
+               <tr>
                  <th> Input </th>
                  <th> Output </th>
                </tr>
-               <tr>
-                 <td>1<br>1 2 3</td>
-                 <td>4</td>
+               <tr *ngFor="let test of tests">
+                 <td>{{test.input}}</td>
+                 <td>{{test.output}}</td>
                </tr>
                
                   

@@ -109,7 +109,10 @@ width: 100%;
     text-align: justify;
     text-justify: inter-word;
 }
-.content { width: 100%;}
+.content { 
+    width: 100%;
+    border-collapse: separate;  border-spacing: 10px 20px;
+}
 .content .td { padding: 0 20px; } 
 .content .th { padding: 0 20px; }
 
@@ -119,3 +122,12 @@ width: 100%;
     width: 48%;
     resize: none;
 }
+
+.test-cases {
+    white-space: pre-line;    
+}
+.test-cases .tr {
+    padding-top:78px;
+    padding-bottom:20px;
+    padding-right:20px;   
+  }

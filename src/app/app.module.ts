@@ -27,11 +27,12 @@ import { LoadingMaskService } from './services/loading-mask-service.service';
 import { AuthorizationService } from './services/authorization.service';
 import { ContestService } from './services/contest.service';
 import { UploadProblemService } from './services/upload-problem.service';
+import { TestCaseService } from './services/test-case.service';
 import { AddTestCasesComponent } from './add-test-cases/add-test-cases.component';
 import { UserProblemComponent } from './user-problem/user-problem.component';
 import { UserContestComponent } from './user-contest/user-contest.component';
-import {CalendarModule} from 'primeng/calendar';
-import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule} from 'primeng/calendar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddProblemsComponent } from './add-problems/add-problems.component';
 import { MatAutocompleteModule, MatInputModule,  } from '@angular/material';
 import {AutoCompleteModule} from 'primeng/autocomplete';
@@ -114,7 +115,8 @@ export function httpServiceFactory(backend: XHRBackend, defaultOptions: RequestO
     },
     AuthorizationService,
     ContestService,
-    UploadProblemService
+    UploadProblemService,
+    TestCaseService
 
   ],
   bootstrap: [AppComponent]
