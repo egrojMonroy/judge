@@ -10,33 +10,33 @@
             <h6>outputstandard output</h6>
         </div>
         <hr>
-        <div class="body test-cases ">
-          <div class="text">
+        <div class="body ">
+          <div class="text  test-cases">
           {{problem.definition}}
           </div>
           <br>
           <div class="subtitle">
              <h4> Input</h4>
           </div>
-          <div class="text">
+          <div class="text  test-cases">
             {{problem.inputDef}}
           </div>
           <br>
           <div class="subtitle">
               <h4> Output</h4>
            </div>
-           <div class="text">
+           <div class="text  test-cases">
             {{problem.outputDef}}
            </div>
            <br><br>
            <h4>Sample</h4>
-           <table class="content">
+           <table class="content  test-cases">
              <thead>
                <tr>
                  <th> Input </th>
                  <th> Output </th>
-               </tr>
-               <tr *ngFor="let test of tests">
+               </tr> 
+               <tr *ngFor="let test of tests" >
                  <td>{{test.input}}</td>
                  <td>{{test.output}}</td>
                </tr>
@@ -45,14 +45,14 @@
              </thead>
            </table>
            <br><br>
-           <div class="text">
+           <!-- <div class="text">
              Aclaration for test case 1
-           </div>
+           </div> -->
       </div>
 
       <br>
       <div>
-        <a href="upload"><button type="button" class="btn btn-primary" href="enviar">Enviar</button></a>
+        <a href="upload/{{problem.id}}"><button type="button" class="btn btn-primary">Enviar</button></a>
         <button type="button" class="btn btn-danger">Cancelar</button>
       </div>
   </div>  

@@ -43,7 +43,7 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
 const appRoutes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'list-problem', component: ListProblemComponent },
-  { path: 'upload', component: UploadProblemComponent },
+  { path: 'upload/:id', component: UploadProblemComponent },
   { path: 'status', component: StatusComponent},
   { path: 'create', component: CreateComponent},
   { path: 'create-problem', component: CreateProblemComponent},

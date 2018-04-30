@@ -4,31 +4,31 @@
       <div class="form-group">
           <label for="inputEmail" class="col-lg-2 control-label">Nombre problema</label>
           <div class="col-lg-10">
-            <input type="text" class="form-control disable" id="inputEmail" placeholder="" value="Nombre problem" disabled>
+            <input type="text" class="form-control disable" id="inputEmail" placeholder="" value="{{problem.id}} - {{problem.name}}" disabled>
           </div>
       </div>
       
       <div class="form-group">
           <label for="select" class="col-lg-2 control-label">Lenguaje </label>
           <div class="col-lg-10">
-            <select class="form-control" id="select">
-              <option>Java 8</option>
-              <option>C++ 11</option>
+            <select class="form-control" id="select" [(ngModel)]="language">
+              <option value="java">Java 1.8.0</option>
+              <option value="cpp">C++ -fno-asm -O2 -Wall -lm --static -std=c++11 -DONLINE_JUDGE</option>
             </select>
           </div>
       </div>
       <div class="form-group">
           <label for="textArea" class="col-lg-2 control-label">Textarea</label>
           <div class="col-lg-10">
-            <textarea class="form-control" rows="15" id="textArea"></textarea>
+            <textarea class="form-control" rows="15" id="textArea" [(ngModel)]="code" ></textarea>
             <span class="help-block">Código en java: nombrar a la clase Main</span>
           </div>
       </div>
       <div class="form-group">
           <div class="col-lg-10 col-lg-offset-2">
-            <button type="reset" class="btn btn-default">Cancel</button>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button  type="reset" class="btn btn-default"> Cancel</button>
+            <button  type="submit" class="btn btn-primary" (click)="submit()">Submit</button>
           </div>
-        </div>
-    <div>
+      </div>
+    </div>
 </div>

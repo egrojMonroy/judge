@@ -11,7 +11,7 @@ export const SERVER = (function() {
   const ACCOUNT = 'account';
   const UPLOAD = 'upload';
   const CONTEST = 'contests';
-  const POST = 'post';
+  const CREATE_CODE = 'create/code';
   const TESTCASE = 'test-cases';
   const PROBLEM = 'problems';
   const PROBLEMSEARCH = 'problems/search';
@@ -20,7 +20,7 @@ export const SERVER = (function() {
     AUTHENTICATE: `${URL.BASE}/${AUTHENTICATE}`,
     ACCOUNT: `${URL.BASE}/${ACCOUNT}`,
     UPLOAD: `${URL.BASE}/${UPLOAD}`, 
-    POST: `${URL.BASE}/${POST}`, 
+    CREATE_CODE: `${URL.BASE}/${CREATE_CODE}`, 
     CONTEST: `${URL.BASE}/${CONTEST}` ,
     TESTCASE: `${URL.BASE}/${TESTCASE}`,
     PROBLEM: `${URL.BASE}/${PROBLEM}` ,

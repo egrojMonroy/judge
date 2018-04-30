@@ -19,25 +19,25 @@ export class CreateProblemComponent implements OnInit {
     this.createdProblem = true;
   }
 
-  upload() {
-    let inputEl: HTMLInputElement = this.inputEl.nativeElement;
-    let fileCount: number = inputEl.files.length;
-    let formData = new FormData();
-    if (fileCount > 0) { // a file was selected
+  // upload() {
+  //   let inputEl: HTMLInputElement = this.inputEl.nativeElement;
+  //   let fileCount: number = inputEl.files.length;
+  //   let formData = new FormData();
+  //   if (fileCount > 0) { // a file was selected
         
-        formData.append('reportFile', inputEl.files.item(0));
+  //       formData.append('reportFile', inputEl.files.item(0));
         
         
-        this.uploadProblemService.uploadFile(formData).subscribe(
-          data=> {
-            console.log("success ", data);
-          }, 
-          err => {
-            console.log("Fail ",err);
-          }
-        );
-    }
-  }
+  //       this.uploadProblemService.uploadFile(formData).subscribe(
+  //         data=> {
+  //           console.log("success ", data);
+  //         }, 
+  //         err => {
+  //           console.log("Fail ",err);
+  //         }
+  //       );
+  //   }
+  // }
   createProblem(){
     console.log(this.problem);
     this.uploadProblemService.createProblem(this.problem).subscribe(

@@ -12,10 +12,15 @@ export class UploadProblemService {
   //   let headers = this.webService.getAuthHeaders(token);
   //   return this.webService.post
   // }
-  uploadFile(formData){
+  uploadFile(formData,language,problemId){
+    console.log("Upload ",language,problemId, SERVER.CREATE_CODE)
     let token = this.authorizationService.getToken();
     let headers = this.webService.getAuthHeadersWithoutContentType(token);
-    return this.webService.post(SERVER.POST, formData, headers);
+    return this.webService.post(`${SERVER.CREATE_CODE}?language=${language}&problemId=${problemId}`, formData, headers).map(
+      data=> {
+        return data.json();
+      }
+    );
   }
   uploadTestCase(formData){
     let token = this.authorizationService.getToken();

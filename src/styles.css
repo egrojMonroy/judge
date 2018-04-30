@@ -111,10 +111,11 @@ width: 100%;
 }
 .content { 
     width: 100%;
-    border-collapse: separate;  border-spacing: 10px 20px;
+    border-collapse: separate;  
+    border-spacing: 10px 50px;
 }
-.content .td { padding: 0 20px; } 
-.content .th { padding: 0 20px; }
+.content .td { padding: 0px 5px; } 
+.content .th { padding: 0px 5px; }
 
 
 .inline-div {
