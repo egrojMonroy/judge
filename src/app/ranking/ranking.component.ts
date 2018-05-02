@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { StatusService} from './../services/status.service';
 @Component({
   selector: 'app-ranking',
   templateUrl: './ranking.component.html',
@@ -7,9 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RankingComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(
+    private rankingService: StatusService
+  ) { }
+  list: any;
   ngOnInit() {
+    
+    console.log("JEHEHEHEHEHEJDH");
+    this.fillList();
+   
   }
-
+  fillList() {
+    this.rankingService.getAll().subscribe(
+      data => {
+        this.list = data;
+        console.log("HEEEEY",this.list);
+      }, 
+      err =>   {
+        console.log("ERROR ", err);
+       }
+    );
+  }
+  
 }

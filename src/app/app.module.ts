@@ -35,8 +35,8 @@ import { CalendarModule} from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddProblemsComponent } from './add-problems/add-problems.component';
 import { MatAutocompleteModule, MatInputModule,  } from '@angular/material';
-import {AutoCompleteModule} from 'primeng/autocomplete';
-
+import { AutoCompleteModule} from 'primeng/autocomplete';
+import { StatusService } from './services/status.service';
 
 //RESolver find 
 
@@ -50,7 +50,8 @@ const appRoutes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'list-contest', component: ListContestComponent },
   //Aprender a mandar id de contest, id de que posicion se va a abrir y como adjuntar el href al anterior
-  { path: 'problems', component: ProblemsComponent},
+  { path: 'problems', component: ListProblemComponent},
+  { path: 'view-contest', component: ProblemsComponent},
   { path: 'view-problem/:id', component: ViewProblemComponent},
   { path: 'ranking', component: RankingComponent}
   // { path: '',
@@ -116,7 +117,8 @@ export function httpServiceFactory(backend: XHRBackend, defaultOptions: RequestO
     AuthorizationService,
     ContestService,
     UploadProblemService,
-    TestCaseService
+    TestCaseService,
+    StatusService
 
   ],
   bootstrap: [AppComponent]

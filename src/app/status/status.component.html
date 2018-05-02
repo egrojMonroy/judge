@@ -1,6 +1,6 @@
 <div class="jumbotron">
       <div class="center">
-        <h4>Crear problema</h4>
+        <h4>Estatus</h4>
         <table class="table table-striped table-hover ">
             <thead>
               <tr>
@@ -8,31 +8,21 @@
                 <th>Usuario</th>
                 <th>Fecha</th>
                 <th>Veredicto</th>
+                <th>Lenguaje</th>
                 <th>Tiempo</th>
               </tr>
             </thead>
             <tbody>
-              <tr class="success">
-                <td>4</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-              </tr>
-              <tr >
-                <td>5</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
+              
+              <tr *ngFor="let ll of list" >
+                <td>{{ll.problem.name}}</td>
+                <td>{{ll.submitter.login}}</td>
+                <td>{{ll.dateupload}}</td>
+                <td>{{ll.status}}</td>
+                <td>{{ll.language == 'C' ? 'C++':'JAVA'}}</td>
                 <td>Column content</td>
               </tr>
-              <tr >
-                <td>6</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-              </tr>
+            
             </tbody>
           </table> 
       </div>

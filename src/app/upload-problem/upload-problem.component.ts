@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from './../services/authorization.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { UploadProblemService } from './../services/upload-problem.service'
 import { TestCaseService } from './../services/test-case.service'; 
 @Component({
@@ -15,7 +15,8 @@ export class UploadProblemComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private uploadProblemService: UploadProblemService,
-    private testCaseService: TestCaseService
+    private testCaseService: TestCaseService,
+    private router: Router
   ) { }
   id:any;
   problem:any;
@@ -44,6 +45,7 @@ export class UploadProblemComponent implements OnInit {
     const languageExt = this.language == 'java'?".java":".cpp";
     let fileName =''; 
     if(this.language =='java'){
+      console.log("HEEEEEEEEEEEJAVAVAVAVA");
       fileName = this.getClassName(this.code) + languageExt;
     } else { 
       fileName = this.id+languageExt;
@@ -56,6 +58,7 @@ export class UploadProblemComponent implements OnInit {
     this.uploadProblemService.uploadFile(formData, this.language,this.problem.id).subscribe(
       data=>{
         console.log("CREATED FILE: ",data);
+        this.router.navigate(['problems']);
       }, 
       err => {
         console.log("ERROR ON CREATE: ",err);
@@ -66,9 +69,10 @@ export class UploadProblemComponent implements OnInit {
   }
 
   getClassName(code){
-    const n = this.code.search("public class ");
+    const n = this.code.search(" class ");
     let substr = this.code.substr(n,n + 100);
     let sub = substr.split(" ");
-    return sub[sub.indexOf("class")+1];
+    console.log("CLASS NAME",sub[sub.indexOf("class")+1]);
+    return "Main";
   }
 }

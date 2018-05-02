@@ -21,14 +21,13 @@
     <label class="control-label " for="exampleTextarea">Definicion de la salida </label>
     <textarea class="form-control" id="exampleTextarea" rows="5" [(ngModel)]="problem.outputDef"></textarea>
     <hr>
-    <!-- <div class="inline">
+    <div class="inline">
         <span style="padding: 0px 10px 0px 0px "> Tiempo:</span>
-        <input class="form-control small-input" type="number" min="0" max="10" value="1">
+        <input class="form-control small-input" [(ngModel)]="problem.timelimit" type="number" min="1" max="35" value="1">
         <span style="padding: 0px 10px 0px 10px "> s </span>
         <span style="padding: 0px 10px 0px 20px "> Dificultad:</span>
         <input class="form-control small-input" type="number" min="1" max="5" value="1">
-        <span style="padding: 0px 10px 0px 10px "> s </span> 
-    </div> -->
+    </div> 
     <hr>
     <div class = "padding-top">
       <button (click)="createProblem()" class="btn btn-primary btn-lg btn-block">Crear</button>

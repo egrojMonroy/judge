@@ -15,6 +15,7 @@ export const SERVER = (function() {
   const TESTCASE = 'test-cases';
   const PROBLEM = 'problems';
   const PROBLEMSEARCH = 'problems/search';
+  const SUBMISSION = 'submissions';
   return {
     URL_BASE: URL.BASE,
     AUTHENTICATE: `${URL.BASE}/${AUTHENTICATE}`,
@@ -24,6 +25,7 @@ export const SERVER = (function() {
     CONTEST: `${URL.BASE}/${CONTEST}` ,
     TESTCASE: `${URL.BASE}/${TESTCASE}`,
     PROBLEM: `${URL.BASE}/${PROBLEM}` ,
-    PROBLEMSEARCH : `${URL.BASE}/${PROBLEMSEARCH}` 
+    PROBLEMSEARCH : `${URL.BASE}/${PROBLEMSEARCH}` ,
+    SUBMISSION: `${URL.BASE}/${SUBMISSION}/all`
   };
 }) ();

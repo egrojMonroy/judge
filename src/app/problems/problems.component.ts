@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./problems.component.css']
 })
 export class ProblemsComponent implements OnInit {
-  
+  selectedTab=1;
   constructor() { }
 
   ngOnInit() {
