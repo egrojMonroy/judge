@@ -16,16 +16,16 @@ export class StatusComponent implements OnInit {
   sub:any;
   ngOnInit() {
     this.fillList();
-    this.sub = Observable.interval(22000)
+    this.sub = Observable.interval(80000)
     .subscribe((val) => { this.fillList(); });
   }
   fillList() {
-      console.log("EEE");
+      
       this.statusService.getAll().subscribe(
         data => {
           ///falta poner paginador y que pagine
           this.list = data.content;
-          console.log("Data, correct",this.list);
+          // console.log("Data, correct",this.list);
         }, 
         err =>   {
           console.log("ERROR ", err);

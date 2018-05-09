@@ -3,8 +3,6 @@
  */
 export const SERVER = (function() {
   const URL = {
-    // BASE_SERVER: 'http://13.58.142.191:9090/',
-   // BASE: 'http://190.181.30.3:8080/api'
    BASE: 'http://localhost:9090/api'
   };
   const AUTHENTICATE = 'authenticate';
@@ -16,6 +14,7 @@ export const SERVER = (function() {
   const PROBLEM = 'problems';
   const PROBLEMSEARCH = 'problems/search';
   const SUBMISSION = 'submissions';
+  const CODER = 'coders';
   return {
     URL_BASE: URL.BASE,
     AUTHENTICATE: `${URL.BASE}/${AUTHENTICATE}`,
@@ -26,6 +25,7 @@ export const SERVER = (function() {
     TESTCASE: `${URL.BASE}/${TESTCASE}`,
     PROBLEM: `${URL.BASE}/${PROBLEM}` ,
     PROBLEMSEARCH : `${URL.BASE}/${PROBLEMSEARCH}` ,
-    SUBMISSION: `${URL.BASE}/${SUBMISSION}/all`
+    SUBMISSION: `${URL.BASE}/${SUBMISSION}/all`,
+    CODER: `${URL.BASE}/${CODER}`
   };
 }) ();

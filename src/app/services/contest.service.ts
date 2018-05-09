@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SERVER } from './../../config/server.config';
 import { WebService } from './../services/web.service';
 import { AuthorizationService } from './authorization.service';
+import { NullAstVisitor } from '@angular/compiler';
 
 @Injectable()
 export class ContestService {
@@ -24,7 +25,14 @@ export class ContestService {
     );
   }
 
-
+  registerContest(contestId) { 
+    let headers = this.getHeaders();
+    return this.webService.post(`${SERVER.CODER}/check?contestId=${contestId}`, null, headers).map(
+      res => {
+        return res.json();
+      }
+    );
+  }
   updateContest(data) {
     let authorization = this.authorizationService.getToken();
     let options = this.webService.getAuthHeaders( authorization );
@@ -50,7 +58,24 @@ export class ContestService {
       }
     );
   }
-  addProblem(problem){
+  getPastContest() { 
     let headers = this.getHeaders();
+    let page = 0; 
+    let pagesize = 100; 
+    return this.webService.get(`${SERVER.CONTEST}/before?page=${page}&size=${pagesize}&sort=startdate,desc`,headers).map(
+      data => {
+        return data.json();
+      }
+    );
+  }
+  getRunningContest() { 
+    let headers = this.getHeaders();
+    let page = 0; 
+    let pagesize = 100; 
+    return this.webService.get(`${SERVER.CONTEST}/after?page=${page}&size=${pagesize}&sort=startdate,desc`,headers).map(
+      data => {
+        return data.json();
+      }
+    );
   }
 }
