@@ -5,12 +5,12 @@
     <div class="inline">
       <input class="form-control" type="text" [(ngModel)]="problem.name">
     </div>
-    
+<!--     
     <div class="form-group">
       <label class="control-label" for="focusedInput">Código solución</label>
       <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" formenctype="multipart/form-data" #fileInput>
       <small id="fileHelp" class="form-text text-muted">Los archivos tienen que tener la extencion .cpp o .java. Si es java la clase debe ser Main.</small>
-    </div>
+    </div> -->
       
     <hr>
     
@@ -26,7 +26,7 @@
         <input class="form-control small-input" [(ngModel)]="problem.timelimit" type="number" min="1" max="35" value="1">
         <span style="padding: 0px 10px 0px 10px "> s </span>
         <span style="padding: 0px 10px 0px 20px "> Dificultad:</span>
-        <input class="form-control small-input" type="number" min="1" max="5" value="1">
+        <input class="form-control small-input" [(ngModel)]="problem.level" type="number" min="1" max="5" value="1">
     </div> 
     <hr>
     <div class = "padding-top">

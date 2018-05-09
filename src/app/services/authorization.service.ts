@@ -20,6 +20,9 @@ export class AuthorizationService {
   getAccountInfo() {
     return this.webService.get(SERVER.ACCOUNT, this.webService.getAuthHeaders(this.getToken())).map(res => res.json());
   }
+  getId(){
+    return this.getAccountInfo();
+  }
   getToken() {
     return sessionStorage.getItem('mfx-token') ? sessionStorage.getItem('mfx-token') : (localStorage.getItem('mfx-token') ? localStorage.getItem('mfx-token') : ''); 
   }

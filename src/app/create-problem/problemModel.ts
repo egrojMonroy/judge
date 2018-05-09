@@ -5,4 +5,5 @@ export class problemModel {
         inputDef: String;
         outputDef: String;
         timelimit: Number;
+        level:Number;
 }

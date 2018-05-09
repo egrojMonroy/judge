@@ -24,6 +24,18 @@ export class ContestService {
     );
   }
 
+
+  updateContest(data) {
+    let authorization = this.authorizationService.getToken();
+    let options = this.webService.getAuthHeaders( authorization );
+    return this.webService.put(`${SERVER.CONTEST}`, data , options).map(
+      res => {
+        console.log('RES', res);
+        return res.json();
+      }
+    );
+  }
+
   getHeaders(){
     let token = this.authorizationService.getToken();
     let headers = this.webService.getAuthHeaders(token);

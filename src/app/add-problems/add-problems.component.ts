@@ -12,11 +12,11 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
 export class AddProblemsComponent implements OnInit {
   //@Input('contest') contest: any; 
     constructor(private contestService: ContestService){}
-    country: any;
+    problem: any;
 
     countries: any[];
 
-    filteredCountriesSingle: string[];
+    filteredProblems: string[];
 
     filteredCountriesMultiple: any[];
 
@@ -31,13 +31,13 @@ export class AddProblemsComponent implements OnInit {
     
   }
   
-  filterCountrySingle(event) {
+  filterProblems(event) {
     let query = event.query;
     console.log('query ',query);
     this.contestService.searchProblemByName(query).subscribe(
       data=>{
-        this.filteredCountriesSingle = data;
-        console.log(this.filteredCountriesSingle);
+        this.filteredProblems = data;
+        console.log(this.filteredProblems);
       },
       err=>{
         console.log('ERRO ',err);

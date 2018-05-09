@@ -1,4 +1,30 @@
-<h3 class="first">Basic</h3>
-<p-autoComplete [(ngModel)]="country" [suggestions]="filteredCountriesSingle" (completeMethod)="filterCountrySingle($event)" field="name" [size]="30"
+<div class="add-problem">
+<h3 class="first">Agregar problemas</h3>
+<p-autoComplete [(ngModel)]="problem" [suggestions]="filteredProblems" (completeMethod)="filterProblems($event)" field="name" [size]="30"
     placeholder="Countries" [minLength]="1" field="name" (onSelect)="addProblem($event)"></p-autoComplete>
-<span style="margin-left:10px">Country: {{country ? country.name||country : 'none'}}</span>
+
+    <div class="center">
+              <h4>Lista de problema</h4>
+              <table class="table table-striped table-hover ">
+                <thead>
+                  <tr>
+                    <th>Nombre de problema</th>
+                    <th>-</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let problem of list">
+                    <td >
+                      
+                        {{problem.name}}
+                      
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" (click)="deleteTestCase(test.id)" >Borrar</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table> 
+      </div>
+
+</div>

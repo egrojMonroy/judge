@@ -5,6 +5,7 @@ export class contestModel {
     enddate: any;
     endtime: any;
     type: String;
+    problem = [];
     constructor(    
        name, 
        startdate,

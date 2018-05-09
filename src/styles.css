@@ -19,9 +19,10 @@ width: 100%;
     background: contain;
 }
 .add-problem {
-    width: 60%;
-    height: 700px;
+    /* width: 60%;
+    height: 700px; */
     margin: auto;
+    padding-top: 20px;
     
 }
 .status {
@@ -132,3 +133,6 @@ width: 100%;
     padding-bottom:20px;
     padding-right:20px;   
   }
+.v-align-top { 
+    vertical-align: top !important;
+}
