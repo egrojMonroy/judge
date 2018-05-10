@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UploadProblemService } from './../services/upload-problem.service'; 
+import { ContestService } from './../services/contest.service';
 @Component({
   selector: 'app-list-problem',
   templateUrl: './list-problem.component.html',
@@ -7,11 +8,33 @@ import { UploadProblemService } from './../services/upload-problem.service';
 })
 export class ListProblemComponent implements OnInit {
 
-  constructor(private uploadProblemService: UploadProblemService) { }
+  constructor(
+    private uploadProblemService: UploadProblemService,
+    private contestService: ContestService    
+  ) { }
   list:any;
+  @Input() contestView: boolean;
+  @Input() contestId;
   currentPage=5;
   ngOnInit() {
-    this.fillList();
+    console.log("LLEGA QUE ",this.contestView, this.contestId);
+    if(this.contestView) { 
+      this.fillListContest();
+    } else {
+      this.fillList();  
+    }
+    
+  }
+  fillListContest() {
+    this.contestService.getProblems(this.contestId).subscribe(
+      data=>{
+        console.log('List ', data);
+        this.list = data;
+      },
+      err => {
+        console.log('Error', err);
+      }
+    );
   }
   fillList(){
     this.uploadProblemService.getAllProblems().subscribe(

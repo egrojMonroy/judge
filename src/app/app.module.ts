@@ -38,7 +38,6 @@ import { MatAutocompleteModule, MatInputModule,  } from '@angular/material';
 import { AutoCompleteModule} from 'primeng/autocomplete';
 import { StatusService } from './services/status.service';
 
-//RESolver find 
 
 const appRoutes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -53,6 +52,7 @@ const appRoutes: Routes = [
   { path: 'problems', component: ListProblemComponent},
   { path: 'view-contest', component: ProblemsComponent},
   { path: 'view-problem/:id', component: ViewProblemComponent},
+  { path: 'view-contest/:id', component: ContestCoderComponent },
   { path: 'ranking', component: RankingComponent}
   // { path: '',
   //   redirectTo: '/sign-up',

@@ -78,4 +78,12 @@ export class ContestService {
       }
     );
   }
+  getProblems(contestId) {
+    let headers = this.getHeaders();
+    return this.webService.get(`${SERVER.CONTEST}/problems?contestId=${contestId}`,headers).map(
+      data => {
+        return data.json();
+      }
+    ); 
+  }
 }

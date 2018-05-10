@@ -17,7 +17,9 @@
             </thead>
             <tbody>
               <tr *ngFor="let comming of commingContests">
-                <td>{{comming.name}}</td>
+                <td>
+                 <a routerLink="/view-contest/{{comming.id}}"> {{comming.name}}</a>
+                </td>
                 <td>{{comming.creatorId}}</td>
                 <td>{{comming.startdate |  date: 'dd/MM/yyyy HH:mm'}} </td>
                 <td>{{comming.enddate |  date: 'dd/MM/yyyy HH:mm'}}</td>
@@ -47,7 +49,7 @@
           <tbody>
             <tr *ngFor="let past of pastContests">
               <td>
-                {{past.name}}
+                  <a routerLink="/view-contest/{{past.id}}"> {{past.name}}</a>
               </td>
               <td>{{past.creatorId}}</td>
               <td>{{past.startdate |  date: 'dd/MM/yyyy HH:mm'}}</td>
