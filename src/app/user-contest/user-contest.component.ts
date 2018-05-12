@@ -10,6 +10,7 @@ export class UserContestComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('--------> desde el juez ---------->');
   }
 
 }
