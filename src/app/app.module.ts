@@ -37,6 +37,10 @@ import { AddProblemsComponent } from './add-problems/add-problems.component';
 import { MatAutocompleteModule, MatInputModule,  } from '@angular/material';
 import { AutoCompleteModule} from 'primeng/autocomplete';
 import { StatusService } from './services/status.service';
+import { UserComponent } from './user/user.component';
+import { UserService } from './services/user.service';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ResetPasswordService } from './services/reset-password.service';
 
 //RESolver find 
 
@@ -53,7 +57,10 @@ const appRoutes: Routes = [
   { path: 'problems', component: ListProblemComponent},
   { path: 'view-contest', component: ProblemsComponent},
   { path: 'view-problem/:id', component: ViewProblemComponent},
-  { path: 'ranking', component: RankingComponent}
+  { path: 'ranking', component: RankingComponent},
+  { path: 'users', component: UserComponent},
+  { path: 'resetpassword', component: ResetPasswordComponent }
+
   // { path: '',
   //   redirectTo: '/sign-up',
   //   pathMatch: 'full'
@@ -86,7 +93,9 @@ export function httpServiceFactory(backend: XHRBackend, defaultOptions: RequestO
     AddTestCasesComponent,
     UserProblemComponent,
     UserContestComponent,
-    AddProblemsComponent
+    AddProblemsComponent,
+    UserComponent,
+    ResetPasswordComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -118,8 +127,9 @@ export function httpServiceFactory(backend: XHRBackend, defaultOptions: RequestO
     ContestService,
     UploadProblemService,
     TestCaseService,
-    StatusService
-
+    StatusService,
+    UserService,
+    ResetPasswordService
   ],
   bootstrap: [AppComponent]
 })
