@@ -24,7 +24,14 @@ export class ContestService {
       }
     );
   }
-
+  getAuthtoContest(contestId) {
+    let headers = this.getHeaders();
+    return this.webService.get(`${SERVER.CODER}/contest?contestId=${contestId}`,headers).map(
+      res => {
+        return res.json();
+      }
+    );
+  }
   registerContest(contestId) { 
     let headers = this.getHeaders();
     return this.webService.post(`${SERVER.CODER}/check?contestId=${contestId}`, null, headers).map(

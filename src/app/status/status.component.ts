@@ -14,14 +14,21 @@ export class StatusComponent implements OnInit {
   ) { }
   list: any;
   sub:any;
+  getAll$:any;
+
   ngOnInit() {
     this.fillList();
     this.sub = Observable.interval(80000)
     .subscribe((val) => { this.fillList(); });
   }
+  ngOnDestroy() {
+    if(this.getAll$){
+      this.getAll$.unsubscribe();
+    }
+  }
   fillList() {
       
-      this.statusService.getAll().subscribe(
+      this.getAll$ = this.statusService.getAll().subscribe(
         data => {
           ///falta poner paginador y que pagine
           this.list = data.content;

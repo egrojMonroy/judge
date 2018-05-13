@@ -37,12 +37,12 @@ export class SignInComponent implements OnInit {
       }
       this.getAccount = this.authorizationService.getAccountInfo().subscribe(res => {
         this.account = res;
-        // if (!this.account.defaultUrl) {
-        //   this.account.defaultUrl = '/';
-        // }
-        // this.router.navigate([this.account.defaultUrl]);
+        if (!this.account.defaultUrl) {
+          this.account.defaultUrl = '/';
+        }
+        this.router.navigate([this.account.defaultUrl]);
       });
-      //this.router.navigateByUrl("list-contest");
+      this.router.navigateByUrl("list-contest");
     }, error => {
       console.log(error.status);
       if (error.status === 401) {

@@ -22,9 +22,16 @@ export class UploadProblemComponent implements OnInit {
   problem:any;
   code:string;
   language:string;
+  getProblemId$:any;
   ngOnInit() {
     this.id = this.getId();
     this.getProblem();
+  }
+  ngOnDestroy() {
+    if(this.getProblemId$){
+      this.getProblemId$.unsubscribe();
+    }
+    
   }
   getId(){
     const id = this.route.snapshot.paramMap.get('id');
@@ -32,7 +39,7 @@ export class UploadProblemComponent implements OnInit {
   }  
   getProblem(){
     console.log(this.id);
-    this.uploadProblemService.getProblemById(this.id).subscribe(
+    this.getProblemId$ = this.uploadProblemService.getProblemById(this.id).subscribe(
       data=>{
         console.log('AAAA',data.json());
         this.problem = data.json();

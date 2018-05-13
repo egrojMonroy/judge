@@ -17,7 +17,7 @@
               <tr *ngFor="let ll of list" >
                 <td>{{ll.problem.name}}</td>
                 <td>{{ll.submitter.login}}</td>
-                <td>{{ll.dateupload}}</td>
+                <td>{{ll.dateupload |  date: 'dd/MM/yyyy HH:mm'}}</td>
                 <td>{{ll.status}}</td>
                 <td>{{ll.language == 'C' ? 'C++':'JAVA'}}</td>
                 <td>Column content</td>

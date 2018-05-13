@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12 col-sm-12 col-12">
-        <h4>Concursos futuros</h4>
+        <h4>Concursos actuales o futuros</h4>
         <label class="title-l"></label>
         <table class="table table-striped table-hover table-responsive ">
             <thead>
@@ -18,7 +18,8 @@
             <tbody>
               <tr *ngFor="let comming of commingContests">
                 <td>
-                 <a routerLink="/view-contest/{{comming.id}}"> {{comming.name}}</a>
+
+                  <button type="button" class="btn btn-link" (click)="click(comming)"> {{comming.name}}</button>
                 </td>
                 <td>{{comming.creatorId}}</td>
                 <td>{{comming.startdate |  date: 'dd/MM/yyyy HH:mm'}} </td>
@@ -49,7 +50,7 @@
           <tbody>
             <tr *ngFor="let past of pastContests">
               <td>
-                  <a routerLink="/view-contest/{{past.id}}"> {{past.name}}</a>
+                  <button type="button" class="btn btn-link" (click)="clickPast(past)"> {{past.name}}</button>
               </td>
               <td>{{past.creatorId}}</td>
               <td>{{past.startdate |  date: 'dd/MM/yyyy HH:mm'}}</td>
