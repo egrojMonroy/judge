@@ -194,3 +194,82 @@ h4{
 
 
 @media (min-width: 1200px) {  }
+
+.display-correction {
+    /* right: 167px;
+    width: 918px; */
+    right: 198px;
+    width: 1050px;
+}
+
+.select-one{
+    display: none;
+}
+
+.select-active {
+    display: block;
+}
+
+.btn_input {
+    background-color: white;
+    width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    height: calc(2.25rem + 2px);
+    text-align: right;
+    font-size: 12px;
+}
+.show-select {
+    background: white;
+    border-radius: 0.25rem;
+    border-left: 1px solid #ced4da;
+    border-bottom: 1px solid #ced4da;
+    border-right: 1px solid #ced4da;
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+}
+.show-select ul {
+    list-style: none;
+}
+
+.pos_relative {
+    position: relative;
+}
+.ul_padding {
+    padding-left: 10px;
+    padding-top: 15px;
+}
+.left-response {
+    left: 130px;
+}
+
+.display-correction-two{
+    left: 340px;
+    width: 500px;
+    top: 100px;
+}
+/*
+          _  _
+         ( MOS )
+          .---.      
+         /   6_6        
+         \_  (__\       
+         //   \\        
+        ((     ))      
+  =======""===""========
+           |||            
+            |              
+
+                 -It's programmer monkey 1.0
+*/
+
+/*  
++ ------------------------------------------------------------+
+ | Module Name: classMonkey |
+ | Module Purpose: emulate a monkey |
+ | Inputs: Bananas |
+ | Outputs: Grunts |
+ | Throws: Poop |
+  +------------------------------------------------------------+
+*/

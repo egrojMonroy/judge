@@ -20,6 +20,8 @@ export const SERVER = (function() {
   // users / authorities
   const RESET_PASSWORD_INIT = 'reset-password/init';
   const RESET_PASSWORD_FINISH = 'reset-password/finish';
+  const USER_REGISTER = 'register';
+  const ACTIVATE_ACCOUNT = 'activate';
 
   return {
     URL_BASE: URL.BASE,
@@ -35,8 +37,10 @@ export const SERVER = (function() {
     CODER: `${URL.BASE}/${CODER}`,
     USER: `${URL.BASE}/${USER}`,
     AUTHORITIES: `${URL.BASE}/${USER}/${AUTHORITIES}`,
-    RESET_PASSWORD_INIT: `${URL.BASE}/${RESET_PASSWORD_INIT}`,
-    RESET_PASSWORD_FINISH: `${URL.BASE}/${RESET_PASSWORD_FINISH}`,
+    RESET_PASSWORD_INIT: `${URL.BASE}/${ACCOUNT}/${RESET_PASSWORD_INIT}`,
+    RESET_PASSWORD_FINISH: `${URL.BASE}/${ACCOUNT}/${RESET_PASSWORD_FINISH}`,
+    USER_REGISTER: `${URL.BASE}/${USER_REGISTER}`,
+    ACTIVATE_ACCOUNT: `${URL.BASE}/${ACTIVATE_ACCOUNT}`
   };
 }) ();
 /*

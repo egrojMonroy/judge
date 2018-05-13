@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { WebService } from './web.service';
 import { AuthorizationService } from './authorization.service';
 import { SERVER } from '../../config/server.config';
+import { Observable } from 'rxjs/Observable';
 
 /*
           _  _
@@ -40,8 +41,7 @@ export class UserService {
     return this.webService.get(SERVER.USER,
       this.webService.getAuthHeaders(this.authorization.getToken())).map(
       (ok) => {
-        const res = ok.json();
-        return res;
+        return ok.json();
       }
     );
   }
@@ -66,14 +66,18 @@ export class UserService {
 
   updateUser(user) {
     return this.webService.put(SERVER.USER, user,
-      this.webService.getAuthHeaders(this.authorization.getToken())).
-      map(
-      (ok) => {
-        return ok.json();
+    this.webService.getAuthHeaders(this.authorization.getToken())).
+    map(
+    (ok) => {
+      return ok.json();
       }
     );
   }
 
-
+  deleteUser(id: any) {
+    const urlmodific = SERVER.USER + '/' + id;
+    return this.webService.delete(`${urlmodific}`,
+      this.webService.getAuthHeaders(this.authorization.getToken()));
+  }
 
 }

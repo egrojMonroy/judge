@@ -41,6 +41,7 @@ import { UserComponent } from './user/user.component';
 import { UserService } from './services/user.service';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ResetPasswordService } from './services/reset-password.service';
+import { ActivateAccountComponent } from './activate-account/activate-account.component';
 
 const appRoutes: Routes = [
   { path: 'sign-in', component: SignInComponent },
@@ -58,7 +59,9 @@ const appRoutes: Routes = [
   { path: 'view-contest/:id', component: ContestCoderComponent },
   { path: 'ranking', component: RankingComponent},
   { path: 'users', component: UserComponent},
-  { path: 'resetpassword', component: ResetPasswordComponent }
+  { path: 'resetpassword', component: ResetPasswordComponent },
+  { path: 'activateaccount', component: ActivateAccountComponent}
+
 
   // { path: '',
   //   redirectTo: '/sign-up',
@@ -94,7 +97,8 @@ export function httpServiceFactory(backend: XHRBackend, defaultOptions: RequestO
     UserContestComponent,
     AddProblemsComponent,
     UserComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ActivateAccountComponent
   ],
   imports: [
     NgbModule.forRoot(),

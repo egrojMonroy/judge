@@ -3,6 +3,32 @@ import { SERVER } from './../../config/server.config';
 import { WebService } from './../services/web.service';
 import * as jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
+
+/*
+          _  _
+         ( MOS )
+          .---.      
+         /   6_6        
+         \_  (__\       
+         //   \\        
+        ((     ))      
+  =======""===""========
+           |||            
+            |              
+
+                 -It's programmer monkey 1.0
+*/
+
+/*  
++ ------------------------------------------------------------+
+ | Module Name: classMonkey |
+ | Module Purpose: emulate a monkey |
+ | Inputs: Bananas |
+ | Outputs: Grunts |
+ | Throws: Poop |
+  +------------------------------------------------------------+
+*/
+
 @Injectable()
 export class AuthorizationService {
 
@@ -59,4 +85,23 @@ export class AuthorizationService {
       }
     });
   }
+
+  // Registry User...............
+  userRegistry(user) {
+    console.log('--> link --> ', SERVER.USER_REGISTER);
+    return this.webService.post(SERVER.USER_REGISTER, user, this.webService.getAuthHeaders(this.getToken()));
+  }
+
+  // save user modific................ 
+  saveUser() {
+    return this.webService.get(SERVER.USER_REGISTER, this.webService.getAuthHeaders(this.getToken())).map(res => {
+      return res.json();
+    });
+  }
+
+  // Activate Account User
+  ActivateAccount(key) {
+    return this.webService.get(SERVER.ACTIVATE_ACCOUNT+'?key='+key, this.webService.getAuthHeaders(this.getToken()));
+  }
+
 }

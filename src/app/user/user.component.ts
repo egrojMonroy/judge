@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { AuthorizationService } from './../services/authorization.service';
 import { ActivatedRoute } from '@angular/router';
@@ -7,6 +7,7 @@ import { RouterModule, Router } from '@angular/router';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { User } from './user.model';
 import { ResetPasswordService } from '../services/reset-password.service';
+import { element } from 'protractor';
 
 /*
           _  _
@@ -42,24 +43,28 @@ export class UserComponent implements OnInit {
 
   userlist: any;
   objUser = new User();
-  objUserEdit = new User(null, null, '', '', '', false, null);
+  objUserEdit = new User();
   isUpdate: boolean = false;
+  selectActive = 'select-one';
+  role: any;
+  authorities = [];
+  getAuthorities: any;
+  addAuthorities = [];
 
   constructor(
     private userService: UserService,
-    // private resetPassword: ResetPasswordService
+    private resetPassword: ResetPasswordService
   ) { 
   }
 
   ngOnInit() {
-    this.showUser();
     this.showAuthorities();
+    this.showUser();
   }
 
   showUser() {
     this.userService.allUsers().subscribe(
       (ok) => {
-        console.log(ok);
         this.userlist = ok;
       }
     );
@@ -67,23 +72,30 @@ export class UserComponent implements OnInit {
 
   showAuthorities() {
     this.userService.authoritiesUser().subscribe(
-        (ok) => {
-        console.log('autoridad -> ', ok);
+      (ok) => {
+        this.role = ok;
+        this.role.forEach(element => {
+          this.authorities.push({role: element, value: false});
+        });
       }
     )
+    return this.authorities;
   }
 
-  createUser(ngform: NgForm) {
-    console.log('---> el nuevo usuario --> ', this.objUser);
+  createUser() {
+    this.authorities.forEach(
+      (ok) => {
+        if (ok.value) {
+          this.addAuthorities.push(ok.role);
+        }
+      }
+    );
+    this.objUser.authorities = this.addAuthorities;
     this.userService.createUser(this.objUser).subscribe(
       (ok) => {
         this.showUser();
         console.log('OK (:');
-        // this.resetPassword.init(ok.email).subscribe(
-        //   (success) => {
-        //     console.log('OK seend email (:');
-        //   }
-        // ) 
+        this.resetRole();
       },
       (error) => {
         console.log('ERROR ):');
@@ -91,20 +103,85 @@ export class UserComponent implements OnInit {
     );
   }
 
-  editUser(ngform: NgForm) {
-    // this.user = new User(ngform['id'], ngform['login'], ngform['firtNanem'], ngform['lastName'], ngform['email'], ngform['activated'], ngform['authorities']);
+  editUser() {
+    this.objUserEdit = this.objUser;
+    this.objUserEdit.authorities = [];
+    this.authorities.forEach(
+      (ok) => {
+        if (ok.value) {
+          this.objUserEdit.authorities.push(ok.role);
+        }
+      }
+    );
+    this.userService.updateUser(this.objUserEdit).subscribe(
+      (ok) => {
+        this.objUserEdit = new User();
+        this.showUser();
+      },
+      (error) => {
+      }
+    );
   }
 
   showDataUser(user) {
+    this.isUpdate = true;
+    user.authorities.forEach(element => {
+      this.authorities.forEach(array => {
+        if (element === array.role) {
+          array.value = true;
+        }
+      });
+    });
     this.objUser = user;
   }
 
-  deleteUser() {
-
+  resetRole() {
+    this.authorities.forEach(array => {
+      array.value = false;
+    });
   }
 
-  UserRoles() {
-
+  delete(user) {
+    this.userService.deleteUser(user.login).subscribe(
+      (del) => {
+        this.resetRole();
+        this.showUser();
+      }
+    );
   }
-  
+
+  selectRole(condition) {
+    this.selectActive = condition;
+  }
+
+  checkOptionUser(role) {
+    this.authorities.forEach((changeCheck) => {
+      if (changeCheck.role === role.role && role.value === false) {
+        changeCheck.value = true;
+      } else {
+        if (changeCheck.role === role.role && role.value === true) {
+          changeCheck.value = false;
+        }
+      }
+    });
+  }
+
+  create() {
+    this.isUpdate = false;
+    this.objUser = new User();
+    this.resetRole();
+  }
+
+  setActive(user, condition) {
+    this.objUser = user;
+    this.objUser.activated = condition;
+    this.userService.updateUser(this.objUser).subscribe((res) => {
+    });
+  }
+
+  cancel() {
+    this.objUser = new User();
+    this.resetRole();
+    this.isUpdate = false;
+  }
 }
