@@ -28,7 +28,7 @@ export const SERVER = (function() {
     AUTHENTICATE: `${URL.BASE}/${AUTHENTICATE}`,
     ACCOUNT: `${URL.BASE}/${ACCOUNT}`,
     UPLOAD: `${URL.BASE}/${UPLOAD}`, 
-    CREATE_CODE: `${URL.BASE}/${CREATE_CODE}`, 
+    CREATE_CODE: `${URL.BASE}/${CREATE_CODE}`,
     CONTEST: `${URL.BASE}/${CONTEST}` ,
     TESTCASE: `${URL.BASE}/${TESTCASE}`,
     PROBLEM: `${URL.BASE}/${PROBLEM}` ,
