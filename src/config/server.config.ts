@@ -33,7 +33,7 @@ export const SERVER = (function() {
     TESTCASE: `${URL.BASE}/${TESTCASE}`,
     PROBLEM: `${URL.BASE}/${PROBLEM}` ,
     PROBLEMSEARCH : `${URL.BASE}/${PROBLEMSEARCH}` ,
-    SUBMISSION: `${URL.BASE}/${SUBMISSION}/all`,
+    SUBMISSION: `${URL.BASE}/${SUBMISSION}`,
     CODER: `${URL.BASE}/${CODER}`,
     USER: `${URL.BASE}/${USER}`,
     AUTHORITIES: `${URL.BASE}/${USER}/${AUTHORITIES}`,
@@ -43,27 +43,3 @@ export const SERVER = (function() {
     ACTIVATE_ACCOUNT: `${URL.BASE}/${ACTIVATE_ACCOUNT}`
   };
 }) ();
-/*
-          _  _
-         ( MOS )
-          .---.      
-         /   6_6        
-         \_  (__\       
-         //   \\        
-        ((     ))      
-  =======""===""========
-           |||            
-            |              
-
-                 -It's programmer monkey 1.0
-*/
-
-/*  
-+ ------------------------------------------------------------+
- | Module Name: classMonkey |
- | Module Purpose: emulate a monkey |
- | Inputs: Bananas |
- | Outputs: Grunts |
- | Throws: Poop |
-  +------------------------------------------------------------+
-*/

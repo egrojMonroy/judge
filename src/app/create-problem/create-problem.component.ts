@@ -3,6 +3,12 @@ import { ElementRef, Input, ViewChild } from '@angular/core';
 import { Http } from '@angular/http';
 import { UploadProblemService } from './../services/upload-problem.service';
 import { problemModel } from './problemModel';
+import {
+  CanActivate, Router,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot
+}                           from '@angular/router';
+import { AuthorizationService } from './../services/authorization.service';
 @Component({
   selector: 'app-create-problem',
   templateUrl: './create-problem.component.html',
@@ -10,7 +16,12 @@ import { problemModel } from './problemModel';
 })
 export class CreateProblemComponent implements OnInit {
   @ViewChild('fileInput') inputEl: ElementRef;
-  constructor( private http: Http, private uploadProblemService: UploadProblemService) { }
+  constructor( 
+    private http: Http, 
+    private uploadProblemService: UploadProblemService,
+    private authorization: AuthorizationService,
+    private router: Router
+  ) { }
   show = false; 
   problem: problemModel;
   createdProblem:boolean;
@@ -18,7 +29,20 @@ export class CreateProblemComponent implements OnInit {
     this.problem = new problemModel();
     this.createdProblem = true;
   }
-
+  // canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  //   let url: string = state.url;
+  //   console.log(url);
+  //   return this.checkLogin(url);
+  // }
+  // checkLogin(url){
+  //   console.log("Is Logged",this.authorization.isLogged());
+  //   if(this.authorization.isLogged()) {
+  //     return true;
+  //   }
+  //    // Navigate to the login page with extras
+  //    this.router.navigate(['/']);
+  //   return false;
+  // }
   // upload() {
   //   let inputEl: HTMLInputElement = this.inputEl.nativeElement;
   //   let fileCount: number = inputEl.files.length;

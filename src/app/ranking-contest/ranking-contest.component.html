@@ -6,8 +6,11 @@
             <th>Posicion</th>
             <th>Concursante</th>
             <th>Resueltos</th>
-            <th *ngFor="let problem of countProblems">
-              {{problem}}</th>
+            <th *ngFor="let problem of problems">
+              <a routerLink="/view-problem/{{problem.id}}">
+                {{problem.id}}
+                </a>
+            </th>
             
           </tr>
         </thead>

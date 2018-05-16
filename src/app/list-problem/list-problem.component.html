@@ -12,6 +12,7 @@
                 <th>Nombre de problema</th>
                 <th>Cantidad Resueltos</th>
                 <th>Dificultad</th>
+                <th>Tiempo limite</th>
               </tr>
             </thead>
             <tbody>
@@ -21,8 +22,9 @@
                     {{problem.name}}
                   </a>
                 </td>
-                <td>5</td>
-                <td>3</td>
+                <td>{{problem.id}}</td>
+                <td>{{problem.level}}</td>
+                <td>{{problem.timelimit}}</td>
               </tr>
             </tbody>
           </table>

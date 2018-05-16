@@ -11,7 +11,9 @@ body{
     max-width: 500px;
     width: 100%;
 }
-
+.login {
+    padding-top: 10% !important;
+}
 .example-full-width {
 width: 100%;
 }
@@ -55,7 +57,7 @@ width: 100%;
 }
 .jumbotron {
     margin-bottom: 0px !important;
-    background-color: #f0f0f0 !important;
+    background-color: #f3f3f3 !important;
     height: 100%;
 }
 .right {
@@ -249,27 +251,3 @@ h4{
     width: 500px;
     top: 100px;
 }
-/*
-          _  _
-         ( MOS )
-          .---.      
-         /   6_6        
-         \_  (__\       
-         //   \\        
-        ((     ))      
-  =======""===""========
-           |||            
-            |              
-
-                 -It's programmer monkey 1.0
-*/
-
-/*  
-+ ------------------------------------------------------------+
- | Module Name: classMonkey |
- | Module Purpose: emulate a monkey |
- | Inputs: Bananas |
- | Outputs: Grunts |
- | Throws: Poop |
-  +------------------------------------------------------------+
-*/

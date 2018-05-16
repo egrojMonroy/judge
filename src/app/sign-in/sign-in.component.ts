@@ -28,6 +28,9 @@ export class SignInComponent implements OnInit {
       this.showErrorMessage = false;
       localStorage.removeItem('mfx-token');
       sessionStorage.removeItem('mfx-token');
+
+      localStorage.removeItem('login');
+      sessionStorage.removeItem('login');
       if (this.user.rememberMe) {
         localStorage.setItem('mfx-token', res.id_token);
         localStorage.setItem('login', this.user.username);

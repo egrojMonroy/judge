@@ -1,4 +1,4 @@
-<div class="jumbotron col-md-5 center">
+<div class="jumbotron col-md-3 center">
   <form method="post" login="ngForm" (ngSubmit)="login()">
     <h4>Ingrese a la página</h4>
     <label class="control-label" for="focusedInput" >Usuario</label>
@@ -7,7 +7,7 @@
     <input class="form-control" name="password" [(ngModel)]="user.password" type="password" placeholder="Password" >
     <div class="m-incorrect" *ngIf="showErrorMessage"><i class="mdi mdi-close"></i> {{showErrorMessage}}</div>
     <div class = "padding-top">
-     <a href="list-contest"><button type="submit" class="btn  btn-success btn-block">Ingresar</button></a>
+     <a href="list-contest"><button type="submit" class="btn btn-outline-success btn-block">Ingresar</button></a>
      <a href="sign-up" class="btn btn-link right">Registrar</a>
     </div>
   </form>

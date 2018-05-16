@@ -8,31 +8,7 @@ import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { User } from './user.model';
 import { ResetPasswordService } from '../services/reset-password.service';
 import { element } from 'protractor';
-
-/*
-          _  _
-         ( MOS )
-          .---.      
-         /   6_6        
-         \_  (__\       
-         //   \\        
-        ((     ))      
-  =======""===""========
-           |||            
-            |              
-
-                 -It's programmer monkey 1.0
-*/
-
-/*  
-+ ------------------------------------------------------------+
- | Module Name: classMonkey |
- | Module Purpose: emulate a monkey |
- | Inputs: Bananas |
- | Outputs: Grunts |
- | Throws: Poop |
-  +------------------------------------------------------------+
-*/
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-user',
@@ -40,7 +16,7 @@ import { element } from 'protractor';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-
+  closeResult: string;
   userlist: any;
   objUser = new User();
   objUserEdit = new User();
@@ -50,9 +26,10 @@ export class UserComponent implements OnInit {
   authorities = [];
   getAuthorities: any;
   addAuthorities = [];
-
+  userDelete: any;
   constructor(
     private userService: UserService,
+    private modalService: NgbModal ,
     private resetPassword: ResetPasswordService
   ) { 
   }
@@ -141,7 +118,26 @@ export class UserComponent implements OnInit {
     });
   }
 
-  delete(user) {
+  open(registry,user) {
+    this.userDelete = user; 
+    this.modalService.open(registry).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      console.log('This', this.closeResult)
+    });
+  }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
+  delete() {
+    let user = this.userDelete;
     this.userService.deleteUser(user.login).subscribe(
       (del) => {
         this.resetRole();

@@ -2,10 +2,10 @@
   <div class="container mt-4">
     <div class="row">
       <div class="col-sm-12 col-md-7 col-lg-8">
-        <div class="card shadow-edit mb-3 height-page display-correction">
-          <div class="card-body pb-5 pt-1">
+        <div class="">
+          <div class="">
             <table class="table table-striped table-responsive">
-              <thead class="thead-ligt">
+              <thead >
                 <tr>
                   <th class=" border-bottom-0">Nombre</th>
                   <th class=" border-bottom-0">Apellido</th>
@@ -31,10 +31,7 @@
                     <button class="btn btn-success btn-sm" (click)="setActive(user, false)" *ngIf="user.activated">Activo</button>
                   </td>
 
-                  <td class="text-right">
-                    <button type="button" (click)="create()" name="button" class="btn btn-outline-success ml-auto mr-auto">
-                      <i class="mdi mdi-plus-box"></i>
-                  </button>
+             
 
                   <td class="text-right">
                     <button type="button" (click)="showDataUser(user)" name="button" class="btn btn-outline-primary ml-auto mr-auto">
@@ -42,7 +39,7 @@
                     </button>
                   </td>
                   <td class="text-right">
-                    <button type="button" (click)="delete(user)" name="button" class="btn btn btn-outline-danger ml-auto mr-auto">
+                  <button type="button" (click)="open(confirm, user)" name="button" class="btn btn btn-outline-danger ml-auto mr-auto">
                      <i class="mdi mdi-delete-empty"></i>
                     </button>
                   </td>
@@ -54,7 +51,7 @@
         </div>
       </div>
 
-      <div class="col-md-3 col-lg-4 col-sm-auto left-response">
+      <div class="col-md-3 col-sm-auto left-response">
         <div id="NewLocationType" class="mb-0">
           <div class="card card-edit shadow-edit" >
             <div class="card-body">
@@ -156,3 +153,20 @@
       </div>
     </div>
   </div>
+
+
+<ng-template #confirm let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Eliminar usuario</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Esta seguro que desea eliminar el usuario? &hellip;</p>
+  </div>
+  <div class="modal-footer" align="center">
+      <button type="button" class="btn btn-primary" (click)="c('Close click'); delete();">Confirmar</button>
+    <button type="button" class="btn btn-warning" (click)="c('Close click')">Cancelar</button>
+  </div>
+</ng-template>

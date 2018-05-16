@@ -4,31 +4,6 @@ import { WebService } from './../services/web.service';
 import * as jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
 
-/*
-          _  _
-         ( MOS )
-          .---.      
-         /   6_6        
-         \_  (__\       
-         //   \\        
-        ((     ))      
-  =======""===""========
-           |||            
-            |              
-
-                 -It's programmer monkey 1.0
-*/
-
-/*  
-+ ------------------------------------------------------------+
- | Module Name: classMonkey |
- | Module Purpose: emulate a monkey |
- | Inputs: Bananas |
- | Outputs: Grunts |
- | Throws: Poop |
-  +------------------------------------------------------------+
-*/
-
 @Injectable()
 export class AuthorizationService {
 
@@ -40,8 +15,11 @@ export class AuthorizationService {
     return this.webService.post(SERVER.AUTHENTICATE, user, this.webService.getJSONOptions()).map(res => res.json());
   }
   logout() {
+    console.log("LOGOUT");
     localStorage.removeItem('mfx-token');
     sessionStorage.removeItem('mfx-token');
+    localStorage.removeItem('login');
+    sessionStorage.removeItem('login');
   }
   getAccountInfo() {
     return this.webService.get(SERVER.ACCOUNT, this.webService.getAuthHeaders(this.getToken())).map(res => res.json());

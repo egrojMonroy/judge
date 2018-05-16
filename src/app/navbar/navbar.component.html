@@ -16,8 +16,26 @@
           <a class="nav-link" routerLink="/users" routerLinkActive="active">Users</a>
         </li>
       </ul>
-        <a href="sign-in"><button class="btn my-2 my-sm-0 my-2 my-lg-0" type="submit"> <i class="mdi mdi-login-variant"></i> {{login?login:"Login"}}</button></a>
+        <span class="mx-right mr-3">{{login?login :""}}</span>
+        <button class="btn my-2 my-sm-0 my-2 my-lg-0" type="submit" [ngModel]="login" (click)="login?open(confirm):click()" > <i class="mdi mdi-login-variant"></i> {{login?"Salir":"Ingresar"}}</button>
     </div>
   </div>
 
 </nav>
+
+
+<ng-template #confirm let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Cerrar sesion</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Desea cerrar sesion? &hellip;</p>
+  </div>
+  <div class="modal-footer" align="center">
+      <button type="button" class="btn btn-primary" (click)="c('Close click'); logout();">Confirmar</button>
+    <button type="button" class="btn btn-warning" (click)="c('Close click')">Cancelar</button>
+  </div>
+</ng-template>

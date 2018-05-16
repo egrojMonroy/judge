@@ -24,6 +24,7 @@ export class StatusComponent implements OnInit {
   ngOnDestroy() {
     if(this.getAll$){
       this.getAll$.unsubscribe();
+      this.sub.unsubscribe();
     }
   }
   fillList() {
@@ -31,8 +32,9 @@ export class StatusComponent implements OnInit {
       this.getAll$ = this.statusService.getAll().subscribe(
         data => {
           ///falta poner paginador y que pagine
+          
           this.list = data.content;
-          // console.log("Data, correct",this.list);
+          console.log("Data, correct",this.list);
         }, 
         err =>   {
           console.log("ERROR ", err);

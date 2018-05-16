@@ -18,7 +18,15 @@ export class StatusService {
   }
   getAll() {
     let headers = this.getHeaders();
-    return this.webService.get(`${SERVER.SUBMISSION}?page=0&size=15&sort=dateupload,desc`,headers).map(
+    return this.webService.get(`${SERVER.SUBMISSION}/all?page=0&size=15&sort=dateupload,desc`,headers).map(
+      data => {
+        return data.json();
+      }
+    );
+  }
+  getPositionContest(contestId){
+    let headers = this.getHeaders();
+    return this.webService.get(`${SERVER.SUBMISSION}/subs?contestId=${contestId}`,headers).map(
       data => {
         return data.json();
       }

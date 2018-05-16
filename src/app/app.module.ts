@@ -52,6 +52,7 @@ const appRoutes: Routes = [
   { path: 'create-problem', component: CreateProblemComponent},
   { path: 'sign-up', component: SignUpComponent },
   { path: 'list-contest', component: ListContestComponent },
+  { path: '', component: ListContestComponent },
   //Aprender a mandar id de contest, id de que posicion se va a abrir y como adjuntar el href al anterior
   { path: 'problems', component: ListProblemComponent},
   { path: 'view-contest', component: ProblemsComponent},
