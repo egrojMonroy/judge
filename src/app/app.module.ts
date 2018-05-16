@@ -42,32 +42,30 @@ import { UserService } from './services/user.service';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ResetPasswordService } from './services/reset-password.service';
 import { ActivateAccountComponent } from './activate-account/activate-account.component';
+import { AuthGuard } from './../guards/auth.guard';
+import { AdminGuard } from './../guards/admin.guard';
+import { TeacherGuard } from './../guards/teacher.guard';
+import { UserGuard } from './../guards/user.guard';
 
 const appRoutes: Routes = [
+  { path: '', redirectTo: '/list-contest', pathMatch: 'full' },
   { path: 'sign-in', component: SignInComponent },
   { path: 'list-problem', component: ListProblemComponent },
-  { path: 'upload/:id', component: UploadProblemComponent },
-  { path: 'status', component: StatusComponent},
-  { path: 'create', component: CreateComponent},
-  { path: 'create-problem', component: CreateProblemComponent},
+  { path: 'upload/:id', component: UploadProblemComponent, canActivate: [AuthGuard] },
+  { path: 'status', component: StatusComponent, canActivate: [AuthGuard]},
+  { path: 'create', component: CreateComponent, canActivate: [AuthGuard, AdminGuard]},
+  { path: 'create-problem', component: CreateProblemComponent, canActivate: [AdminGuard, AuthGuard]},
   { path: 'sign-up', component: SignUpComponent },
   { path: 'list-contest', component: ListContestComponent },
-  { path: '', component: ListContestComponent },
-  //Aprender a mandar id de contest, id de que posicion se va a abrir y como adjuntar el href al anterior
   { path: 'problems', component: ListProblemComponent},
-  { path: 'view-contest', component: ProblemsComponent},
-  { path: 'view-problem/:id', component: ViewProblemComponent},
-  { path: 'view-contest/:id', component: ContestCoderComponent },
+  { path: 'view-contest', component: ProblemsComponent, canActivate: [AuthGuard]},
+  { path: 'view-problem/:id', component: ViewProblemComponent },
+  { path: 'view-contest/:id', component: ContestCoderComponent, canActivate: [AuthGuard]},
   { path: 'ranking', component: RankingComponent},
-  { path: 'users', component: UserComponent},
+  { path: 'users', component: UserComponent , canActivate: [AdminGuard]},
   { path: 'resetpassword', component: ResetPasswordComponent },
   { path: 'activateaccount', component: ActivateAccountComponent}
 
-
-  // { path: '',
-  //   redirectTo: '/sign-up',
-  //   pathMatch: 'full'
-  // }
 ];
 
 export function httpServiceFactory(backend: XHRBackend, defaultOptions: RequestOptions, loadingMaskService: LoadingMaskService) {
@@ -133,7 +131,11 @@ export function httpServiceFactory(backend: XHRBackend, defaultOptions: RequestO
     TestCaseService,
     StatusService,
     UserService,
-    ResetPasswordService
+    ResetPasswordService,
+    AuthGuard,
+    UserGuard,
+    TeacherGuard,
+    AdminGuard
   ],
   bootstrap: [AppComponent]
 })
