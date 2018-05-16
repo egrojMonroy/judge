@@ -23,12 +23,16 @@ export class SignInComponent implements OnInit {
   showErrorMessage: any = false;
   ngOnInit() {
   }
+  ngOnDestroy () {
+    if (this.getAccount) {
+      this.getAccount.unsubscribe();
+    }
+  }
   login() {
     this.authorizationService.login(this.user).subscribe(res => {
       this.showErrorMessage = false;
       localStorage.removeItem('mfx-token');
       sessionStorage.removeItem('mfx-token');
-
       localStorage.removeItem('login');
       sessionStorage.removeItem('login');
       if (this.user.rememberMe) {
@@ -38,14 +42,14 @@ export class SignInComponent implements OnInit {
         sessionStorage.setItem('mfx-token', res.id_token);
         sessionStorage.setItem('login', this.user.username);
       }
-      this.getAccount = this.authorizationService.getAccountInfo().subscribe(res => {
+      this.getAccount = this.authorizationService.getAccountInfo().subscribe( res => {
         this.account = res;
         if (!this.account.defaultUrl) {
           this.account.defaultUrl = '/';
+          window.location.reload();
         }
         this.router.navigate([this.account.defaultUrl]);
       });
-      this.router.navigateByUrl("list-contest");
     }, error => {
       console.log(error.status);
       if (error.status === 401) {
@@ -56,11 +60,7 @@ export class SignInComponent implements OnInit {
       }
     });
   }
-  ngOnDestroy() {
-    if (this.getAccount) {
-      this.getAccount.unsubscribe();
-    }
-  }
+ 
 
 
 }

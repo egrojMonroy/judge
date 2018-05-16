@@ -12,9 +12,7 @@
         <li class="nav-item"><a class="nav-link" routerLink="/status" routerLinkActive="active">Estatus </a></li>
         <li class="nav-item"><a class="nav-link" routerLink="/ranking" routerLinkActive="active">Ranking </a></li>
         <li class="nav-item"><a class="nav-link" routerLink="/create" routerLinkActive="active">Crear </a></li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/users" routerLinkActive="active">Users</a>
-        </li>
+        <li class="nav-item" *ngIf="hasAuthority(ROLE_ADMIN)"><a class="nav-link" routerLink="/users" routerLinkActive="active">Users</a> </li>
       </ul>
         <span class="mx-right mr-3">{{login?login :""}}</span>
         <button class="btn my-2 my-sm-0 my-2 my-lg-0" type="submit" [ngModel]="login" (click)="login?open(confirm):click()" > <i class="mdi mdi-login-variant"></i> {{login?"Salir":"Ingresar"}}</button>

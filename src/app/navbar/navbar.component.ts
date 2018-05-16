@@ -16,26 +16,29 @@ export class NavbarComponent implements OnInit {
     private router: Router
   ) { }
   login: any;
+  account: any;
   ngOnInit() {
     this.login = sessionStorage.getItem('login');
-  }
-  ngOnChanges() {
-    this.login = sessionStorage.getItem('login');
+    this.authorization.getAccountInfo().subscribe(res => this.account = res);
   }
 
-  click(){
+  hasAuthority(authority) {
+    if (!this.account) {
+      return false;
+    }
+    return this.account.authorities.includes(authority);
+  }
+  click() {
     this.router.navigate(['/sign-in']);
   }
   logout() {
-    console.log("IN");
     this.authorization.logout();
-    this.login='';
+    this.login = '';
     this.router.navigate(['/']);
   }
 
 
   open(registry) {
-    
     this.modalService.open(registry).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {

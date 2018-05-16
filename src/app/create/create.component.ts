@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AuthorizationService } from './../services/authorization.service';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(
+    private authorization: AuthorizationService
+  ) { }
+  account: any;
   ngOnInit() {
+    this.authorization.getAccountInfo().subscribe(res => this.account = res);
   }
-
+  hasAuthority(authority) {
+    if (!this.account) {
+      return false;
+    }
+    return this.account.authorities.includes(authority);
+  }
 }
