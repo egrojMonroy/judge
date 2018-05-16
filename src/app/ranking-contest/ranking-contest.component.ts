@@ -15,9 +15,19 @@ export class RankingContestComponent implements OnInit {
   countProblems = [1,2,3,4,5,6,7,8];
   list: any;
   problems: any;
+  status$: any;
+  problem$: any;
   ngOnInit() {
     this.fillList();
     this.fillProblems();
+  }
+  ngOnDestroy(){
+    if( this.status$ ){
+      this.status$.unsubscribe();
+    }
+    if(this.problem$) {
+      this.problem$.unsubscribe();
+    }
   }
   predicateBy(prop,propb){
     return function(a,b){
@@ -36,22 +46,29 @@ export class RankingContestComponent implements OnInit {
     }
  }
   fillList(){
-    this.statusService.getPositionContest(this.contestId).subscribe(
+    this.status$ = this.statusService.getPositionContest(this.contestId).subscribe(
       data => { 
-        console.log("WORKS ",data);
         this.list = data; 
-        console.log(this.list);
         console.log(data.sort(this.predicateBy("accepteds", "totalTime")));
+        console.log(data[0].data["String Task"]);
       }
     );
   }
   fillProblems(){
-    this.contestService.getProblems(this.contestId).subscribe(
+    this.problem$ = this.contestService.getProblems(this.contestId).subscribe(
       data => {
         console.log("Problems ",data);
         this.problems = data;
       }
     );
   }
+  getBooleanAC(a){
+    if(a) return a.veredict == "ACCEPTED";
+    return false;
+  }
 
+  getBooleanWA(a){
+    if(a) return a.veredict != "ACCEPTED";
+    return false;
+  }
 }

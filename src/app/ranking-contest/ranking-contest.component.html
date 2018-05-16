@@ -15,34 +15,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr >
+          <tr *ngFor="let position of list; let i = index" [attr.data-index]="i">
             <td>
-              <a href="view-problem">
-                1 
-              </a>
+              {{i+1}}
             </td>
-            <td>Jose</td>
-            <td>6</td>
-            <th *ngFor="let problem of countProblems">
-              {{problem}}/51
-            </th>
+            <td>{{position.username}}</td>
+            <td>{{position.accepteds}}</td>
+            <td [ngClass]="{'accepted': getBooleanAC(position.data[problem.name]), 'error': getBooleanWA(position.data[problem.name])}"  *ngFor="let problem of problems">
+              {{position.data[problem.name]?position.data[problem.name].cout:0}}/{{position.data[problem.name]?position.data[problem.name].date:0}}  
+            </td>
           </tr>
-          <tr >
-            <td>2 </td>
-            <td>Gabriel</td>
-            <td>5</td>
-            <th *ngFor="let problem of countProblems">
-              {{problem}}/315</th>
-            
-          </tr>
-          <tr >
-            <td>3 </td>
-            <td>Viqi</td>
-            <td>5</td>
-            <th *ngFor="let problem of countProblems">
-              {{problem}}/54</th>
-            
-          </tr>
+          
         </tbody>
     </table> 
     <ul class="pagination center">

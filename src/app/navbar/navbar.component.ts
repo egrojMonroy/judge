@@ -30,7 +30,9 @@ export class NavbarComponent implements OnInit {
     console.log("IN");
     this.authorization.logout();
     this.login='';
+    this.router.navigate(['/']);
   }
+
 
   open(registry) {
     

@@ -65,7 +65,7 @@ export class UploadProblemComponent implements OnInit {
     this.uploadProblemService.uploadFile(formData, this.language,this.problem.id).subscribe(
       data=>{
         console.log("CREATED FILE: ",data);
-        this.router.navigate(['problems']);
+        this.router.navigate(['status']);
       }, 
       err => {
         console.log("ERROR ON CREATE: ",err);
