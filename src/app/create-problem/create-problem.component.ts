@@ -22,9 +22,10 @@ export class CreateProblemComponent implements OnInit {
     private authorization: AuthorizationService,
     private router: Router
   ) { }
-  show = false; 
+  show = false;
   problem: problemModel;
-  createdProblem:boolean;
+  createdProblem: boolean;
+  pdfFile: any;
   ngOnInit() {
     this.problem = new problemModel();
     this.createdProblem = true;
@@ -62,19 +63,45 @@ export class CreateProblemComponent implements OnInit {
   //       );
   //   }
   // }
-  createProblem(){
+  createProblem() {
     console.log(this.problem);
     this.uploadProblemService.createProblem(this.problem).subscribe(
-      data=>{
+      data => {
         console.log(data);
-        let dataJson = data.json();
-        this.problem.id=dataJson.id;
-        this.createdProblem=false;
+        const dataJson = data.json();
+        this.problem.id = dataJson.id;
+        this.createdProblem = false;
+        this.uploadPDF(dataJson.id);
       },
       err => {
         console.log(err);
       }
     );
   }
-  
+  uploadPDF(id) {
+    console.log("FUNCIONA el ID", id );
+    const formData = new FormData();
+    if (this.pdfFile != null && this.pdfFile.type === 'application/pdf') {
+      formData.append('reportFile', this.pdfFile);
+      this.uploadProblemService.uploadPDF(formData, id).subscribe(
+        data => {
+          console.log(data);
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
+  }
+  onChange(event) {
+    const file = event.srcElement.files;
+    if ( file[0].type !== 'application/pdf') {
+      console.log('Type error');
+      this.pdfFile = null;
+    } else {
+    this.pdfFile = file[0];
+    
+    console.log(this.pdfFile);
+    }
+  }
 }

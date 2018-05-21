@@ -13,7 +13,10 @@
     </div> -->
       
     <hr>
-    
+    <div class="custom-file">
+      <input type="file" class="custom-file-input" id="customFileLang" lang="es" (change)="onChange($event)">
+      <label class="custom-file-label" for="customFileLang">{{ pdfFile?pdfFile.name:'Seleccionar Archivo' }}</label>
+    </div>
     <label class="control-label " for="exampleTextarea">Definicion del problema</label>
     <textarea class="form-control" id="exampleTextarea" rows="8" [(ngModel)]="problem.definition"></textarea>
     <label class="control-label " for="exampleTextarea">Definicion de la entrada </label>
@@ -23,7 +26,7 @@
     <hr>
     <div class="inline">
         <span style="padding: 0px 10px 0px 0px "> Tiempo:</span>
-        <input class="form-control small-input" [(ngModel)]="problem.timelimit" type="number" min="1" max="35" value="1">
+        <input class="form-control small-input" [(ngModel)]="problem.timelimit" type="number" min="1" max="10" value="10">
         <span style="padding: 0px 10px 0px 10px "> s </span>
         <span style="padding: 0px 10px 0px 20px "> Dificultad:</span>
         <input class="form-control small-input" [(ngModel)]="problem.level" type="number" min="1" max="5" value="1">

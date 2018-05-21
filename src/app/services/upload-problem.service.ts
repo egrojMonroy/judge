@@ -22,6 +22,12 @@ export class UploadProblemService {
       }
     );
   }
+  uploadPDF(formData, id ) {
+    const token = this.authorizationService.getToken();
+    const headers = this.webService.getAuthHeadersWithoutContentType(token);
+    console.log('Is uploading');
+    return this.webService.post(`${SERVER.PROBLEM}/upload?problemId=${id}`, formData, headers);
+  }
   uploadTestCase(formData){
     let token = this.authorizationService.getToken();
     let headers = this.webService.getAuthHeadersWithoutContentType(token);
