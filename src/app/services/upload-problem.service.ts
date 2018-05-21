@@ -28,10 +28,10 @@ export class UploadProblemService {
     console.log('Is uploading');
     return this.webService.post(`${SERVER.PROBLEM}/upload?problemId=${id}`, formData, headers);
   }
-  uploadTestCase(formData){
+  uploadTestCase(formData) {
     let token = this.authorizationService.getToken();
     let headers = this.webService.getAuthHeadersWithoutContentType(token);
-    return this.webService.post(`${SERVER.TESTCASE}/create`,formData,headers);
+    return this.webService.post(`${SERVER.TESTCASE}/create`, formData, headers);
   }
   createProblem(problem){
     let headers = this.getHeaders();
