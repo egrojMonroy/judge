@@ -1,7 +1,7 @@
 <div class="jumbotron login">
   <div class="form-group">
     <h4>Registrar</h4>
-    <label class="control-label" for="focusedInput">Nick</label>
+    <label class="control-label" for="focusedInput">Usuario</label>
     <input class="form-control" type="text" [(ngModel)]="user.login" name="login">
     <label class="control-label" for="focusedInput">Nombre</label>
     <input class="form-control" type="text" [(ngModel)]="user.firstName" name="firstName">
@@ -12,8 +12,8 @@
     <label class="control-label" for="focusedInput">Contraseña</label>
     <input class="form-control" type="password" [(ngModel)]="user.password" name="password">
     <div class = "padding-top">
-      <a class="btn btn-default btn-block" (click)="register()">Registrar</a>
-      <a class="btn btn-link right">ya tienes cuenta - ingresa</a>
+      <button class="btn btn-default btn-block" (click)="register()">Registrar</button>
+      <button class="btn btn-link right" (click) = "login()">ya tienes cuenta - ingresa</button>
      </div>
   </div>
 </div>

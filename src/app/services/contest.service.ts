@@ -14,6 +14,14 @@ export class ContestService {
 
   token: string;
 
+  getContestsByActual() {
+    let headers = this.getHeaders();
+    return this.webService.post(`${SERVER.CONTEST}/creator`, headers).map(
+      res => {
+        return res.json();
+      }
+    );
+  }
   createContest(data) {
     let authorization = this.authorizationService.getToken();
     let options = this.webService.getAuthHeaders( authorization );

@@ -1,9 +1,9 @@
 <div class="jumbotron top-cero" >
     <tabset  active="activeJustified" justified="true">
-      <tab index="0" heading="Crear contest" >
-        <app-create-contest></app-create-contest>
+      <tab index="0" heading="Crear competencia" >
+        <app-user-contest></app-user-contest>
       </tab>
-      <tab index="1" heading="Crear problema">
+      <tab index="1" heading="Crear problema" *ngIf="hasAuthority('ROLE_ADMIN') || hasAuthority('ROLE_TEACHER')">
         <app-user-problem></app-user-problem>
       </tab>
     </tabset>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Router , ActivatedRoute} from '@angular/router';
+import {  UploadProblemService } from '../services/upload-problem.service';
+
 @Component({
   selector: 'app-user-problem',
   templateUrl: './user-problem.component.html',
@@ -8,13 +10,31 @@ import { Router , ActivatedRoute} from '@angular/router';
 })
 export class UserProblemComponent implements OnInit {
   closeResult: string;
-  constructor(private modalService: NgbModal , private router: Router, private r: ActivatedRoute ) { }
+  constructor(
+    private modalService: NgbModal , 
+    private router: Router, 
+    private r: ActivatedRoute ,
+    private problemService: UploadProblemService
+    
+  ) { }
+  list:any;
 
   ngOnInit() {
+    this.getProblemsByCreator();
   }
 
 
-
+  getProblemsByCreator() {
+    this.problemService.getProblemByActual().subscribe(
+      data => {
+        console.log("Good ", data);
+        this.list = data;
+      }, 
+      err => {
+        console.log('error ', err);
+      }
+    );
+  }
 
   confirm(){
     console.log("CONFIRM");

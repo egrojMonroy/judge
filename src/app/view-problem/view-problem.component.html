@@ -1,5 +1,13 @@
 <div class="jumbotron">
     <div class="center">
+        <div>
+            <label>PDF src</label>
+            <input type="text" placeholder="PDF src" [(ngModel)]="pdfSrc">
+        </div>
+        <pdf-viewer [src]="resumePdfViewerObject" 
+                    [render-text]="true"
+                    style="display: block;"
+        ></pdf-viewer>
       <div class="view-problem">
         <div class="header">
             <div class="title">

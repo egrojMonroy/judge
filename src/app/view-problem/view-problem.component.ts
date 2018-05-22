@@ -10,7 +10,7 @@ import { TestCaseService } from './../services/test-case.service';
   styleUrls: ['./view-problem.component.css']
 })
 export class ViewProblemComponent implements OnInit {
-
+  pdfSrc:any;
   constructor(
     private route: ActivatedRoute,
     private uploadProblemService: UploadProblemService,
@@ -19,10 +19,35 @@ export class ViewProblemComponent implements OnInit {
   id: Number;
   problem: any; 
   tests: any;
+  resumePdfViewerObject: any;
   ngOnInit() {
     this.id = parseInt(this.getId());
     this.getProblem(this.id);
     this.getTestCases();
+    this.getPDF();
+     
+  }
+  getPDF(){
+    console.log("URL",this.uploadProblemService.getPDF());
+    console.log("HEADERS",this.uploadProblemService.getHeaders());
+    this.resumePdfViewerObject = {
+      url: this.uploadProblemService.getPDF(),
+      withCredentials: true, 
+      httpHeaders: this.uploadProblemService.getHeaders()
+      
+    }
+    // this.uploadProblemService.getPDF().subscribe(
+    //   data=> {
+    //     console.log("ELLLLEGA");
+    //     const fileURL = URL.createObjectURL(data);
+    //     console.log("FILE ", fileURL);
+    //     this.pdfSrc=fileURL;
+    //   }, 
+    //   err => {
+    //     console.log("AFS");
+    //     console.log(err);
+    //   }
+    // );
   }
   getId(){
     const id = this.route.snapshot.paramMap.get('id');

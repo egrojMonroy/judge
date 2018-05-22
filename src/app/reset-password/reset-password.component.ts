@@ -2,30 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ResetPasswordService } from '../services/reset-password.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
-/*
-          _  _
-         ( MOS )
-          .---.      
-         /   6_6        
-         \_  (__\       
-         //   \\        
-        ((     ))      
-  =======""===""========
-           |||            
-            |              
-
-                 -It's programmer monkey 1.0
-*/
-
-/*  
-+ ------------------------------------------------------------+
- | Module Name: classMonkey |
- | Module Purpose: emulate a monkey |
- | Inputs: Bananas |
- | Outputs: Grunts |
- | Throws: Poop |
-  +------------------------------------------------------------+
-*/
 
 @Component({
   selector: 'app-reset-password',

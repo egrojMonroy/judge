@@ -28,6 +28,25 @@ export class UploadProblemService {
     console.log('Is uploading');
     return this.webService.post(`${SERVER.PROBLEM}/upload?problemId=${id}`, formData, headers);
   }
+  getPDF(){
+    const headers = this.getHeaders();
+    console.log("DFSAA");
+    return  `${SERVER.PROBLEM}/download?fileName=3211`;
+    // this.webService.get(`${SERVER.PROBLEM}/download?fileName=3211`,headers).map(
+    //   data => {
+    //     return new Blob([data.blob()], {type: 'application/pdf'});
+    //   }
+    // );
+  }
+
+  getProblemByActual() {
+    let headers = this.getHeaders();
+    return this.webService.post(`${SERVER.CONTEST}/creator`, headers).map(
+      res => {
+        return res.json();
+      }
+    );
+  }
   uploadTestCase(formData) {
     let token = this.authorizationService.getToken();
     let headers = this.webService.getAuthHeadersWithoutContentType(token);

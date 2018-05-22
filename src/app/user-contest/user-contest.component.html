@@ -1,3 +1,60 @@
-<p>
-  user-contest works!
-</p>
+<div class="jumbotron">
+  <div class="center">
+    <table>
+    <tbody>
+      <tr>
+        <td class="col-lg-8">
+          <h4>Tus contests creados</h4>
+          <table class="table table-striped table-hover ">
+            <thead>
+              <tr>
+                <th>Nombre de competencia</th>
+                <th>Hora de inicio</th>
+                <th>Hora Final</th>
+                <th>Cantidad de problemas</th>
+                <th> - </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr >
+                <td>
+                  Nombre
+                </td>
+                <td>5</td>
+              </tr>
+              <tr >
+                <td>Nuevos ratas </td>
+                <td>6</td>
+              </tr>
+              <tr >
+                <td>Chocolate caliente </td>
+                <td>3</td>
+              </tr>
+            </tbody>
+          </table> 
+          
+      </td>
+      <td align="center">
+          <button type="button"  class="btn btn-primary btn-lg" (click)="open(create)">Crear competencia</button>
+      </td>
+      </tr>
+    </tbody>
+  </table>    
+  </div>
+</div>
+
+<ng-template #create let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Nueva competencia</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Quiere crear una competencia nueva? &hellip;</p>
+    </div>
+    <div class="modal-footer" align="center">
+        <a [routerLink]="['/create-contest']"><button type="button" class="btn btn-primary" (click)="c('Close click');">Confirmar</button></a>
+      <button type="button" class="btn btn-warning" (click)="c('Close click')">Cancelar</button>
+    </div>
+  </ng-template>
