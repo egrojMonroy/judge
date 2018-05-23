@@ -24,7 +24,7 @@ export class UserContestComponent implements OnInit {
   getContestByCreator() {
     this.contestService.getContestsByActual().subscribe(
       data => {
-        console.log('Good', data);
+        console.log('Good in contest', data);
         this.list = data; 
       }, 
       err => {
@@ -32,7 +32,9 @@ export class UserContestComponent implements OnInit {
       }
     );
   }
-
+  update(id){
+    this.router.navigate(['create-contest/'+id]);
+  }
   confirm(){
     console.log("CONFIRM");
     this.router.navigateByUrl("./problem");

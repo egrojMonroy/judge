@@ -1,3 +1,4 @@
+import { UpdateContestComponent } from './update-contest/update-contest.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -46,6 +47,7 @@ import { AuthGuard } from './../guards/auth.guard';
 import { AdminGuard } from './../guards/admin.guard';
 import { TeacherGuard } from './../guards/teacher.guard';
 import { UserGuard } from './../guards/user.guard';
+import { UpdateProblemComponent } from './update-problem/update-problem.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/list-contest', pathMatch: 'full' },
@@ -56,6 +58,8 @@ const appRoutes: Routes = [
   { path: 'create', component: CreateComponent, canActivate: [AuthGuard]},
   { path: 'create-problem', component: CreateProblemComponent, canActivate: [AdminGuard, AuthGuard]},
   { path: 'create-contest', component: CreateContestComponent, canActivate: [AuthGuard]},
+  { path: 'create-problem/:id', component: UpdateProblemComponent, canActivate: [AdminGuard, AuthGuard]},
+  { path: 'create-contest/:id', component: UpdateContestComponent, canActivate: [AuthGuard]},
   { path: 'sign-up', component: SignUpComponent },
   { path: 'list-contest', component: ListContestComponent },
   { path: 'problems', component: ListProblemComponent},
@@ -66,7 +70,6 @@ const appRoutes: Routes = [
   { path: 'users', component: UserComponent , canActivate: [AdminGuard]},
   { path: 'resetpassword', component: ResetPasswordComponent },
   { path: 'activateaccount', component: ActivateAccountComponent}
-
 ];
 
 export function httpServiceFactory(backend: XHRBackend, defaultOptions: RequestOptions, loadingMaskService: LoadingMaskService) {
@@ -87,6 +90,8 @@ export function httpServiceFactory(backend: XHRBackend, defaultOptions: RequestO
     ListContestComponent,
     CreateComponent,
     CreateContestComponent,
+    UpdateContestComponent,
+    UpdateProblemComponent,
     ContestCoderComponent,
     ProblemsComponent,
     RankingContestComponent,

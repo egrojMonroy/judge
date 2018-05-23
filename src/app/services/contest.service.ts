@@ -1,3 +1,4 @@
+import { Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { SERVER } from './../../config/server.config';
 import { WebService } from './../services/web.service';
@@ -16,7 +17,7 @@ export class ContestService {
 
   getContestsByActual() {
     let headers = this.getHeaders();
-    return this.webService.post(`${SERVER.CONTEST}/creator`, headers).map(
+    return this.webService.get(`${SERVER.CONTEST}/creator`, headers).map(
       res => {
         return res.json();
       }
@@ -58,7 +59,14 @@ export class ContestService {
       }
     );
   }
-
+  getOneContest(id){
+    let Headers = this.getHeaders();
+    return this.webService.get(`${SERVER.CONTEST}/${id}`,Headers).map(
+      data => {
+        return data.json();
+      }
+    );
+  }
   getHeaders(){
     let token = this.authorizationService.getToken();
     let headers = this.webService.getAuthHeaders(token);

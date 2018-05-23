@@ -10,20 +10,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr >
-              <td>1</td>
-              <td>Turist</td>
-              <td>3210</td>
-            </tr>
-            <tr >
-              <td>2</td>
-              <td>Peter</td>
-              <td>13545</td>
-            </tr>
-            <tr >
-              <td>3</td>
-              <td>Canter</td>
-              <td>15</td>
+            <tr *ngFor="let rank of list ;let i = index" [attr.data-index]="i">
+              <td>{{i+1}}</td>
+              <td>{{rank[0]}}</td>
+              <td>{{rank[1]}}</td>
             </tr>
           </tbody>
       </table> 

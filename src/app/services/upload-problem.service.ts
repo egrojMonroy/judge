@@ -41,7 +41,7 @@ export class UploadProblemService {
 
   getProblemByActual() {
     let headers = this.getHeaders();
-    return this.webService.post(`${SERVER.CONTEST}/creator`, headers).map(
+    return this.webService.get(`${SERVER.PROBLEM}/creator?page=0&size=10`, headers).map(
       res => {
         return res.json();
       }

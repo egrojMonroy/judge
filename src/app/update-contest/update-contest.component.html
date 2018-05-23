@@ -1,0 +1,102 @@
+
+<div class =" create-problem " style="padding-bottom:35px; padding-top:25px">
+    <form class="needs-validation" #ContestForm="ngForm" (ngSubmit)="update()">
+      <h4>Crear contest</h4>
+      <label class="control-label" for="focusedInput" >Nombre del contest  </label><font color="red">*</font>
+      <div class="inline">
+        <input class="form-control" id="name" type="text" maxlength="90"  [(ngModel)]="form.name" name="name" required oninvalid="this.setCustomValidity('El nombre es un dato requerido')" #name='ngModel'>
+      </div>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)"
+          class="alert alert-danger">
+  
+        <div *ngIf="name.errors.required">
+          Name is required.
+        </div>
+        <div *ngIf="name.errors.minlength">
+          Name must be at least 4 characters long.
+        </div>
+        <div *ngIf="name.errors.forbiddenName">
+          Name cannot be Bob.
+        </div>
+  
+      </div>
+      <table class="table center">
+        <tbody>
+          <tr >
+            <td style="width:50%">
+              <label class="control-label" for="focusedInput" >Fecha de inicio</label>
+              <div class="inline">
+                <p-calendar [(ngModel)]="now" [minDate]="minStart" [maxDate]="maxStart" [showTime]="true" (focusout)="outStartDate()"  name="now" required></p-calendar>
+              </div>          
+            </td>
+            <td style="width:50%">
+              <label class="control-label" for="focusedInput" >Fecha de cierre</label>
+              <div class="inline">
+                <p-calendar [(ngModel)]="end" [minDate]="minEnd" [maxDate]="maxEnd" [showTime]="true" name="end" required></p-calendar>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+        <label for="select" class="col-lg-2 control-label">Tipo </label>
+        <div>
+          <select class="form-control" id="select" [(ngModel)]="form.type"  name="type">
+            <option value="publico">Publico</option>
+            <option value="privado">Privado</option>
+          </select>
+        </div>
+        <div>
+          <div class="add-problem center">
+            <h4 class="first">Agregar problemas <font color="red" size="2px">* Dos problemas minimo</font> </h4>
+            <p-autoComplete [(ngModel)]="problem" [suggestions]="filteredProblems" (completeMethod)="filterProblems($event)" field="name" [size]="30"
+                placeholder="Problemas" [minLength]="1" field="name" (onSelect)="addProblem($event)"></p-autoComplete>
+                
+            <br>
+            <div *ngIf="showMessage"
+              class="alert alert-danger">
+              Se requieren dos o mas problemas. 
+            </div>
+            <br>
+            
+                <div >
+                          <h4>Lista de problema</h4>
+                          <table class="table table-striped table-hover ">
+                            <thead>
+                              <tr>
+                                <th>Nombre de problema</th>
+                                <th>Dificultad</th>
+                                <th>-</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let problem of list">
+                                <td >
+                                  
+                                    {{problem.name}}
+                                  
+                                </td>
+                                <td>
+                                  {{problem.level}}
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" (click)="deleteProblem(problem)" >Borrar</button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table> 
+                </div>
+            
+            </div>
+          </div>
+          
+      <div class = "padding-top" >
+        <button  type="submit" name="button" class="btn btn-outline-primary btn-lg btn-block" [disabled]="!ContestForm.form.valid || !(list.length >1)" >{{'Actualizar'}}</button>
+      </div>
+    </form>
+  
+  
+  
+  
+  </div>
+  
+  

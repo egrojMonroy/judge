@@ -10,22 +10,17 @@
               <tr>
                 <th>Nombre de problema</th>
                 <th>Dificultad</th>
+                <th>Tiempo limite</th>
               </tr>
             </thead>
             <tbody>
-              <tr >
+              <tr *ngFor="let problem of list">
                 <td>
-                  Nombre
+                  {{problem.name}}
                 </td>
-                <td>5</td>
-              </tr>
-              <tr >
-                <td>Nuevos ratas </td>
-                <td>6</td>
-              </tr>
-              <tr >
-                <td>Chocolate caliente </td>
-                <td>3</td>
+                <td>{{problem.level}}</td>
+                <td>{{problem.timelimit}}</td>
+                <td><button class="btn btn-primary "> Modificar </button></td>
               </tr>
             </tbody>
           </table> 

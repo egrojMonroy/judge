@@ -27,7 +27,7 @@ export class UserProblemComponent implements OnInit {
   getProblemsByCreator() {
     this.problemService.getProblemByActual().subscribe(
       data => {
-        console.log("Good ", data);
+        console.log("Good in problem", data);
         this.list = data;
       }, 
       err => {

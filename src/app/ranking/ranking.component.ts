@@ -8,7 +8,7 @@ import { StatusService} from './../services/status.service';
 export class RankingComponent implements OnInit {
 
   constructor(
-    private rankingService: StatusService
+    private statusService: StatusService
   ) { }
   list: any;
   ngOnInit() {
@@ -18,7 +18,7 @@ export class RankingComponent implements OnInit {
    
   }
   fillList() {
-    this.rankingService.getAll().subscribe(
+    this.statusService.getRank().subscribe(
       data => {
         this.list = data;
         console.log("HEEEEY",this.list);

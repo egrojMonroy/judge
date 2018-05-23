@@ -24,6 +24,15 @@ export class StatusService {
       }
     );
   }
+
+  getRank() {
+    let headers = this.getHeaders();
+    return this.webService.get(`${SERVER.USER}/ranking`,headers).map(
+      data => {
+        return data.json();
+      }
+    );
+  }
   getPositionContest(contestId){
     let headers = this.getHeaders();
     return this.webService.get(`${SERVER.SUBMISSION}/subs?contestId=${contestId}`,headers).map(
