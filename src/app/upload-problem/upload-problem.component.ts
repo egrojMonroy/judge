@@ -60,7 +60,7 @@ export class UploadProblemComponent implements OnInit {
     var fileCode = new File([this.code], fileName, {
       type: "text/plain"
     });
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append('reportFile',fileCode);
     this.uploadProblemService.uploadFile(formData, this.language,this.problem.id).subscribe(
       data=>{
@@ -72,7 +72,6 @@ export class UploadProblemComponent implements OnInit {
       }
     );
     
-
   }
 
   getClassName(code){

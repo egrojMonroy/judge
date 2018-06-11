@@ -67,17 +67,40 @@ export class ListContestComponent implements OnInit {
       this.router.navigate(['view-contest/'+id.id]);
     }
   }
-  confirm() { 
-    console.log('confirma', this.contestRegister);
-    this.registerContest$ = this.contestService.registerContest(this.contestRegister).subscribe(
-      data => {
-        console.log("Good Register", data);      
-        alert("Registrado en el contest!");    
-      }, 
-      err => {
-        console.log ("ERROR ", err);
-      }
-    );
+  confirm(pass) { 
+    console.log('confirma', this.contestRegister.id, pass);
+    if(this.contestRegister.type === 'privado') {
+      console.log('JEJEJ');
+      this.contestService.getPassAccess(this.contestRegister.id,pass).subscribe(
+        data => {
+          console.log('first ', data)
+          if(data) {
+            this.registerContest$ = this.contestService.registerContest(this.contestRegister.id).subscribe(
+              res => {
+                console.log("Good Register", res);      
+                alert("Registrado en el contest!");    
+              }, 
+              err => {
+                console.log ("ERROR ", err);
+              }
+            );
+          } else {
+            alert("Contrasena incorrecta");
+          }
+        }
+      );
+    } else {
+      console.log('withour');
+      this.registerContest$ = this.contestService.registerContest(this.contestRegister.id).subscribe(
+        data => {
+          console.log("Good Register", data);      
+          alert("Registrado en el contest!");    
+        }, 
+        err => {
+          console.log ("ERROR ", err);
+        }
+      );
+    }
   }
 
   fillComming() {
@@ -107,8 +130,8 @@ export class ListContestComponent implements OnInit {
 
 
 
-  open(registry, contestId) {
-    this.contestRegister = contestId;
+  open(registry, contest) {
+    this.contestRegister = contest;
     const activeModal = this.modalService.open(registry).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {

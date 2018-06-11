@@ -32,7 +32,7 @@
             <td style="width:50%">
               <label class="control-label" for="focusedInput" >Fecha de cierre</label>
               <div class="inline">
-                <p-calendar [(ngModel)]="end" [minDate]="minEnd" [maxDate]="maxEnd" [showTime]="true" name="end" required></p-calendar>
+                <p-calendar [(ngModel)]="end" [minDate]="now" [showTime]="true" name="end" required></p-calendar>
               </div>
             </td>
           </tr>
@@ -44,6 +44,13 @@
             <option value="publico">Publico</option>
             <option value="privado">Privado</option>
           </select>
+        </div>
+        
+        <div *ngIf="form.type==='privado'">
+          <label for="input" class="col-lg-2 control-label">Contrasena</label>
+          <div>
+              <input class="form-control" type="password" id="password" name="password"  [(ngModel)]="form.password">
+          </div>
         </div>
         <div>
           <div class="add-problem center">

@@ -260,3 +260,12 @@ h4{
 .error {
     background-color:  rgba(255, 8, 0, 0.384);
 }
+
+.reduce {
+    width: 74% !important;
+    display: inline-block !important;
+}
+.top-cell {
+    padding-top: 89px;
+    vertical-align: top;
+}

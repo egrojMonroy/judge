@@ -10,8 +10,6 @@ export class AuthorizationService {
   constructor(private webService: WebService, private router: Router) { }
   
   login(user) {
-    console.log(SERVER.AUTHENTICATE);
-    console.log(user,"ASDFASDFDSF");   
     return this.webService.post(SERVER.AUTHENTICATE, user, this.webService.getJSONOptions()).map(res => res.json());
   }
   logout() {
@@ -64,13 +62,12 @@ export class AuthorizationService {
     });
   }
 
-  // Registry User...............
+  // Registry User
   userRegistry(user) {
-    console.log('--> link --> ', SERVER.USER_REGISTER);
     return this.webService.post(SERVER.USER_REGISTER, user, this.webService.getAuthHeaders(this.getToken()));
   }
 
-  // save user modific................ 
+  // save user
   saveUser() {
     return this.webService.get(SERVER.USER_REGISTER, this.webService.getAuthHeaders(this.getToken())).map(res => {
       return res.json();

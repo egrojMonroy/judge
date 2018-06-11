@@ -8,7 +8,7 @@
             <thead>
               <tr>
                 <th>Nombre</th>
-                <th>Creador</th>
+                <!-- <th>Creador</th> -->
                 <th>Inicio</th>
                 <th>Final</th>
                 <th>Tipo</th>
@@ -21,12 +21,12 @@
 
                   <button type="button" class="btn btn-link" (click)="click(comming)"> {{comming.name}}</button>
                 </td>
-                <td>{{comming.creatorId}}</td>
+                <!-- <td>{{comming.creatorId}}</td> -->
                 <td>{{comming.startdate |  date: 'dd/MM/yyyy HH:mm'}} </td>
                 <td>{{comming.enddate |  date: 'dd/MM/yyyy HH:mm'}}</td>
                 <td>{{comming.type}}</td>
                 <td>
-                  <button type="button" class="btn btn-link" (click)="open(registry,comming.id)">Registrese</button>
+                  <button type="button" class="btn btn-link" (click)="open(comming.type=='privado'?registryPassword:registry,comming)">Registrese</button>
                 </td>
               </tr>
              
@@ -41,10 +41,10 @@
           <thead>
             <tr>
               <th>Nombre</th>
-              <th>Autor</th>
+              <!-- <th>Autor</th> -->
               <th>Inicio</th>
               <th>Final</th>
-              <th>  -  </th>
+              <!-- <th>  -  </th> -->
             </tr>
           </thead>
           <tbody>
@@ -52,10 +52,10 @@
               <td>
                   <button type="button" class="btn btn-link" (click)="clickPast(past)"> {{past.name}}</button>
               </td>
-              <td>{{past.creatorId}}</td>
+              <!-- <td>{{past.creatorId}}</td> -->
               <td>{{past.startdate |  date: 'dd/MM/yyyy HH:mm'}}</td>
               <td>{{past.enddate |  date: 'dd/MM/yyyy HH:mm'}}</td>
-              <td> Posiciones </td>
+              <!-- <td> Posiciones </td> -->
             </tr>
             
           </tbody>
@@ -75,7 +75,28 @@
       <p>{{login}}, confirmas la registracion? &hellip;</p>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-primary" (click)="c('Close click');confirm()">Confirmar</button>
+        <button type="button" class="btn btn-outline-primary" (click)="c('Close click');confirm('')">Confirmar</button>
       <button type="button" class="btn btn-outline-warning" (click)="c('Close click')">Cancelar</button>
     </div>
   </ng-template>
+
+  <ng-template #registryPassword let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">Registrarse a competencia</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{{login}}, confirmas la registracion? &hellip;</p>
+      </div>
+      <label for="input" class="col-lg-2 control-label">Contrasena</label>
+        <div>
+            <input #pass class="form-control" id="name" type="password" maxlength="90">
+        </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-outline-primary" (click)="c('Close click');confirm(pass.value)">Confirmar</button>
+        <button type="button" class="btn btn-outline-warning" (click)="c('Close click')">Cancelar</button>
+      </div>
+    </ng-template>
+  

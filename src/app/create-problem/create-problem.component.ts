@@ -26,9 +26,17 @@ export class CreateProblemComponent implements OnInit {
   problem: problemModel;
   createdProblem: boolean;
   pdfFile: any;
+  nameGood:any; 
+  status:Number;
+  fileGood:any;
   ngOnInit() {
-    this.problem = new problemModel();
+    this.problem = new problemModel(6,1);
     this.createdProblem = true;
+    if(!this.problem.name){
+      this.nameGood = false;
+    } else { 
+      this.nameGood = true;
+    }
   }
   // canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
   //   let url: string = state.url;
@@ -63,23 +71,31 @@ export class CreateProblemComponent implements OnInit {
   //       );
   //   }
   // }
+
   createProblem() {
-    console.log(this.problem);
-    this.uploadProblemService.createProblem(this.problem).subscribe(
-      data => {
-        console.log(data);
-        const dataJson = data.json();
-        this.problem.id = dataJson.id;
-        this.createdProblem = false;
-        this.uploadPDF(dataJson.id);
-      },
-      err => {
-        console.log(err);
+    if(this.nameGood && this.fileGood) {
+      this.uploadProblemService.createProblem(this.problem).subscribe(
+        data => {
+          console.log(data);
+          const dataJson = data.json();
+          this.problem.id = dataJson.id;
+          this.createdProblem = false;
+          this.uploadPDF(dataJson.id);
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    } else {
+      if(!this.nameGood){
+        this.status=1;
+      } 
+      if(!this.fileGood){
+        this.status=2
       }
-    );
+    }
   }
   uploadPDF(id) {
-    console.log("FUNCIONA el ID", id );
     const formData = new FormData();
     if (this.pdfFile != null && this.pdfFile.type === 'application/pdf') {
       formData.append('reportFile', this.pdfFile);
@@ -93,6 +109,17 @@ export class CreateProblemComponent implements OnInit {
       );
     }
   }
+  download() {
+    window.open(this.uploadProblemService.getSampleUrl());
+  }
+  onBlur() {
+    console.log("HEY");
+    if(this.problem.name)
+    {this.nameGood = true;}
+    else {
+      this.nameGood = false;
+    }
+  }
   onChange(event) {
     const file = event.srcElement.files;
     if ( file[0].type !== 'application/pdf') {
@@ -100,7 +127,7 @@ export class CreateProblemComponent implements OnInit {
       this.pdfFile = null;
     } else {
     this.pdfFile = file[0];
-    
+    this.fileGood = true;
     console.log(this.pdfFile);
     }
   }

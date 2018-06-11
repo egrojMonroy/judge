@@ -22,12 +22,17 @@
                 <td>{{contest.enddate |  date: 'dd/MM/yyyy HH:mm'}}</td>
                 <td>{{contest.problems.length}}</td>
                 <td><button class="btn btn-primary " (click)="update(contest.id)"> Modificar </button></td>
+                <td>
+                  <button type="button" (click)="open(confirm, contest)" name="button" class="btn btn btn-outline-danger">
+                    Borrar   
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table> 
           
       </td>
-      <td align="center">
+      <td  class="top-cell" align="center">
           <button type="button"  class="btn btn-primary btn-lg" (click)="open(create)">Crear competencia</button>
       </td>
       </tr>
@@ -47,7 +52,23 @@
       <p>Quiere crear una competencia nueva? &hellip;</p>
     </div>
     <div class="modal-footer" align="center">
-        <a [routerLink]="['/create-contest']"><button type="button" class="btn btn-primary" (click)="c('Close click');">Confirmar</button></a>
+        <button type="button" class="btn btn-primary" (click)="c('Close click'); createContest()">Confirmar</button>
       <button type="button" class="btn btn-warning" (click)="c('Close click')">Cancelar</button>
     </div>
   </ng-template>
+
+<ng-template #confirm let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Eliminar competencia</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Esta seguro que desea eliminar la competencia? &hellip;</p>
+  </div>
+  <div class="modal-footer" align="center">
+      <button type="button" class="btn btn-primary" (click)="c('Close click'); delete();">Confirmar</button>
+    <button type="button" class="btn btn-warning" (click)="c('Close click')">Cancelar</button>
+  </div>
+</ng-template>

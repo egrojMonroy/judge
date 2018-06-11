@@ -1,3 +1,4 @@
+import { Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { WebService } from './web.service';
 import { AuthorizationService } from './authorization.service';
@@ -14,10 +15,19 @@ export class UploadProblemService {
   // }
   uploadFile(formData,language,problemId){
     console.log("Upload ",language,problemId, SERVER.CREATE_CODE)
+
     let token = this.authorizationService.getToken();
-    let headers = this.webService.getAuthHeadersWithoutContentType(token);
+    const headers = this.webService.getAuthHeadersWithoutContentType(token);
     return this.webService.post(`${SERVER.CREATE_CODE}?language=${language}&problemId=${problemId}`, formData, headers).map(
       data=> {
+        return data.json();
+      }
+    );
+  }
+  getProblem(id){ 
+    let headers = this.getHeaders();
+    return this.webService.get(`${SERVER.PROBLEM}/${id}`).map(
+      data => {
         return data.json();
       }
     );
@@ -41,7 +51,8 @@ export class UploadProblemService {
 
   getProblemByActual() {
     let headers = this.getHeaders();
-    return this.webService.get(`${SERVER.PROBLEM}/creator?page=0&size=10`, headers).map(
+    console.log("ACTUAL ",`${SERVER.PROBLEM}/creator`);
+    return this.webService.get(`${SERVER.PROBLEM}/creator`, headers).map(
       res => {
         return res.json();
       }
@@ -55,6 +66,10 @@ export class UploadProblemService {
   createProblem(problem){
     let headers = this.getHeaders();
     return this.webService.post(`${SERVER.PROBLEM}`,problem,headers);
+  }
+  updateProblem(problem){
+    let headers = this.getHeaders();
+    return this.webService.put(`${SERVER.PROBLEM}`,problem,headers);
   }
   getHeaders(){
     let token = this.authorizationService.getToken();
@@ -75,10 +90,13 @@ export class UploadProblemService {
     let headers = this.getHeaders();
     return this.webService.delete(`${SERVER.TESTCASE}/${id}`,headers);
   }
-
+  deleteProblem (problem) {
+    problem.active = false;
+    return this.updateProblem(problem);
+  }
   getAllProblems(){
     let headers = this.getHeaders();
-    return this.webService.get(`${SERVER.PROBLEM}`,headers);
+    return this.webService.get(`${SERVER.PROBLEM}/active`,headers);
   }
 
   getProblemById(id){
@@ -86,7 +104,21 @@ export class UploadProblemService {
     let headers = this.getHeaders();
     return this.webService.get(`${SERVER.PROBLEM}/${id}`,headers);
   }
-
+  getProblemUrl(id){
+    return `${SERVER.PROBLEM}/download?fileName=${id}`;
+  }
+  checkUrl(id) {
+    let url = `${SERVER.PROBLEM}/download?fileName=${id}`;
+    console.log(url);
+    let req = new XMLHttpRequest();
+        req.open('HEAD',url,false);
+        req.send(null);
+    var headers = req.getAllResponseHeaders();
+    return headers;
+  }
+  getSampleUrl(){
+    return `${SERVER.PROBLEM}/download/sample`;
+  }
   searchProblemByName(name){
     let headers = this.getHeaders();
     return this.webService.get(`${SERVER.PROBLEMSEARCH}?name=${name}`,headers).map(

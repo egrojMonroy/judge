@@ -33,6 +33,15 @@ export class ContestService {
       }
     );
   }
+  getPassAccess(contestId, password) {
+    let Headers = this.getHeaders();
+    return this.webService.post(`${SERVER.CONTEST}/verify?contestId=${contestId}&password=${password}`,null, Headers).map(
+      data => {
+        console.log('In Service ',data);
+        return data.json();
+        }
+    );
+  }
   getAuthtoContest(contestId) {
     let headers = this.getHeaders();
     return this.webService.get(`${SERVER.CODER}/contest?contestId=${contestId}`,headers).map(
@@ -50,6 +59,7 @@ export class ContestService {
     );
   }
   updateContest(data) {
+    console.log("UPDATE", data );
     let authorization = this.authorizationService.getToken();
     let options = this.webService.getAuthHeaders( authorization );
     return this.webService.put(`${SERVER.CONTEST}`, data , options).map(
@@ -58,6 +68,10 @@ export class ContestService {
         return res.json();
       }
     );
+  }
+  deleteContest(contest) {
+    contest.active = false;
+    return this.updateContest(contest);
   }
   getOneContest(id){
     let Headers = this.getHeaders();
@@ -95,6 +109,7 @@ export class ContestService {
     let headers = this.getHeaders();
     let page = 0; 
     let pagesize = 100; 
+    console.log("URL RUNIGN0", `${SERVER.CONTEST}/after?page=${page}&size=${pagesize}&sort=startdate,desc`);
     return this.webService.get(`${SERVER.CONTEST}/after?page=${page}&size=${pagesize}&sort=startdate,desc`,headers).map(
       data => {
         return data.json();

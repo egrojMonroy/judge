@@ -31,10 +31,12 @@ export class SignInComponent implements OnInit {
   login() {
     this.authorizationService.login(this.user).subscribe(res => {
       this.showErrorMessage = false;
+      // borrar todas las variables 
       localStorage.removeItem('mfx-token');
       sessionStorage.removeItem('mfx-token');
       localStorage.removeItem('login');
-      sessionStorage.removeItem('login');
+      sessionStorage.removeItem('login'); 
+      // guardar las variables del usuario registrado
       if (this.user.rememberMe) {
         localStorage.setItem('mfx-token', res.id_token);
         localStorage.setItem('login', this.user.username);

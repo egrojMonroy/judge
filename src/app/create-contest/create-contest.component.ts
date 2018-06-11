@@ -28,7 +28,7 @@ export class CreateContestComponent implements OnInit {
 
   model;
   status:Number;
-  form = new contestModel('','','','','','');
+  form = new contestModel('','','','','','publico');
   now: Date;
   end: Date;
   minStart : Date;
@@ -42,6 +42,7 @@ export class CreateContestComponent implements OnInit {
   showMessage = false;
 
   ngOnInit() {
+    this.form.type= "publico";
     this.now = new Date(Date.now()+(10*60*1000));
     this.minStart = new Date(Date.now()+(10*60*1000));
     this.maxStart = new Date(Date.now() + (60 * 24 * 60 * 60 * 1000));  
@@ -60,8 +61,12 @@ export class CreateContestComponent implements OnInit {
        "startdate":this.now.toISOString(),
        "enddate":this.end.toISOString(),
        "type":this.form.type,
-       "problems": this.list
+       "problems": this.list, 
+       "password":this.form.password?this.form.password:'',
+       "active": this.form.active
       }
+      console.log('CREATE', this.now, this.end.toISOString());
+      console.log('Form show create', fform);
       
         this.contestService.createContest(fform).subscribe(
           data => {
@@ -102,11 +107,8 @@ export class CreateContestComponent implements OnInit {
   }
   outStartDate(){
     console.log('change',this.now);
-    this.minEnd = this.now;
+    this.minEnd = this.maxStart = new Date(Date.now() + (60 * 24 * 60 * 60 * 1000));  
     this.minEnd.setMinutes(this.now.getMinutes()+30);
-    this.end = this.minEnd;
-
-    console.log(this.minEnd," ' ", this.maxEnd);
   
   }
 

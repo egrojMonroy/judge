@@ -6,6 +6,8 @@ export class contestModel {
     endtime: any;
     type: String;
     problem = [];
+    password?:String; 
+    active = true;
     constructor(    
        name, 
        startdate,

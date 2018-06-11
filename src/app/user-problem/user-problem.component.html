@@ -20,13 +20,18 @@
                 </td>
                 <td>{{problem.level}}</td>
                 <td>{{problem.timelimit}}</td>
-                <td><button class="btn btn-primary "> Modificar </button></td>
+                <td><button class="btn btn-primary" (click)="click(problem.id)"> Modificar </button></td>
+                <td>
+                  <button type="button" (click)="open(confirm, problem)" name="button" class="btn btn btn-outline-danger">
+                    Borrar   
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table> 
           
       </td>
-      <td align="center">
+      <td class="top-cell" align="center">
           <button type="button"  class="btn btn-primary btn-lg" (click)="open(create)">Crear Problema</button>
       </td>
       </tr>
@@ -46,7 +51,23 @@
       <p>Quiere crear un problema nuevo? &hellip;</p>
     </div>
     <div class="modal-footer" align="center">
-        <a [routerLink]="['/create-problem']"><button type="button" class="btn btn-primary" (click)="c('Close click');">Confirmar</button></a>
+        <button type="button" class="btn btn-primary" (click)="c('Close click');createProblem()">Confirmar</button>
       <button type="button" class="btn btn-warning" (click)="c('Close click')">Cancelar</button>
     </div>
   </ng-template>
+
+<ng-template #confirm let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Eliminar problema</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Esta seguro que desea eliminar el problema? &hellip;</p>
+  </div>
+  <div class="modal-footer" align="center">
+      <button type="button" class="btn btn-primary" (click)="c('Close click'); delete();">Confirmar</button>
+    <button type="button" class="btn btn-warning" (click)="c('Close click')">Cancelar</button>
+  </div>
+</ng-template>

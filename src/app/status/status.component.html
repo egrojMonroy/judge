@@ -15,7 +15,12 @@
             <tbody>
               
               <tr *ngFor="let ll of list" >
-                <td>{{ll.problem.name}}</td>
+                
+                <td>
+                    <a routerLink="/view-problem/{{ll.problem.id}}">
+                      {{ll.problem.name}}
+                    </a>  
+                </td>
                 <td>{{ll.submitter.login}}</td>
                 <td>{{ll.dateupload |  date: 'dd/MM/yyyy HH:mm'}}</td>
                 <td>{{ll.status}}</td>

@@ -23,11 +23,11 @@ export class NavbarComponent implements OnInit {
   }
 
   hasAuthority(authority) {
-    console.log("AUTH ");
+    //console.log("AUTH ");
     if (!this.account) {
       return false;
     }
-    console.log("AUTH ", this.account.authorities, authority);
+    //console.log("AUTH ", this.account.authorities, authority);
     return this.account.authorities.includes(authority);
   }
   click() {

@@ -24,27 +24,32 @@
       <tbody>
         <tr >
           <td style="width:50%">
-            <label class="control-label" for="focusedInput" >Fecha de inicio</label>
+            <label class="control-label" for="focusedInput" >Fecha de inicio {{now}}</label>
             <div class="inline">
               <p-calendar [(ngModel)]="now" [minDate]="minStart" [maxDate]="maxStart" [showTime]="true" (focusout)="outStartDate()"  name="now" required></p-calendar>
             </div>          
           </td>
           <td style="width:50%">
-            <label class="control-label" for="focusedInput" >Fecha de cierre</label>
+            <label class="control-label" for="focusedInput" >Fecha de cierre {{end}}</label>
             <div class="inline">
-              <p-calendar [(ngModel)]="end" [minDate]="minEnd" [maxDate]="maxEnd" [showTime]="true" name="end" required></p-calendar>
+              <p-calendar [(ngModel)]="end" [minDate]="now" [showTime]="true" name="end" required></p-calendar>
             </div>
           </td>
         </tr>
       </tbody>
-    </table>
-    
+    </table>  
       <label for="select" class="col-lg-2 control-label">Tipo </label>
       <div>
-        <select class="form-control" id="select" [(ngModel)]="form.type"  name="type">
+        <select class="form-control" id="select" [(ngModel)]="form.type"  name="select">
           <option value="publico" [selected]="true">Publico</option>
           <option value="privado">Privado</option>
         </select>
+      </div>
+      <div *ngIf="form.type==='privado'">
+        <label for="input" class="col-lg-2 control-label">Contrasena</label>
+        <div>
+            <input class="form-control" id="password" name="password" type="password" maxlength="90"  [(ngModel)]="form.password">
+        </div>
       </div>
       <div>
         <div class="add-problem center">

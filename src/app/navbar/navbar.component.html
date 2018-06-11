@@ -9,7 +9,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item"><a class="nav-link" routerLink="/list-contest" routerLinkActive="active">Competencias </a></li>
         <li class="nav-item"><a class="nav-link"  routerLink="/problems" routerLinkActive="active">Problemas</a></li>
-        <li class="nav-item" *ngIf="hasAuthority('ROLE_USER')"><a class="nav-link" routerLink="/status" routerLinkActive="active">Estatus </a></li>
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_USER')"><a class="nav-link" routerLink="/status" routerLinkActive="active">Estado </a></li>
         <li class="nav-item"><a class="nav-link" routerLink="/ranking" routerLinkActive="active">Ranking </a></li>
         <li class="nav-item" *ngIf="hasAuthority('ROLE_USER')"><a class="nav-link" routerLink="/create" routerLinkActive="active">Crear </a></li>
         <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')"><a class="nav-link" routerLink="/users" routerLinkActive="active">Users</a> </li>

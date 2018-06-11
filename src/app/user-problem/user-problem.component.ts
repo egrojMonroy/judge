@@ -1,8 +1,8 @@
+import { UploadProblemService } from './../services/upload-problem.service';
+import { UploadProblemComponent } from './../upload-problem/upload-problem.component';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Router , ActivatedRoute} from '@angular/router';
-import {  UploadProblemService } from '../services/upload-problem.service';
-
 @Component({
   selector: 'app-user-problem',
   templateUrl: './user-problem.component.html',
@@ -10,6 +10,7 @@ import {  UploadProblemService } from '../services/upload-problem.service';
 })
 export class UserProblemComponent implements OnInit {
   closeResult: string;
+  problemDelete: any;
   constructor(
     private modalService: NgbModal , 
     private router: Router, 
@@ -22,7 +23,9 @@ export class UserProblemComponent implements OnInit {
   ngOnInit() {
     this.getProblemsByCreator();
   }
-
+  createProblem(){
+    this.router.navigate(['/create-problem']);
+  }
 
   getProblemsByCreator() {
     this.problemService.getProblemByActual().subscribe(
@@ -35,13 +38,29 @@ export class UserProblemComponent implements OnInit {
       }
     );
   }
-
+  click(id){
+    this.router.navigate(["/create-problem/"+id]);
+  }
   confirm(){
     console.log("CONFIRM");
     this.router.navigateByUrl("./problem");
   }
-
-  open(registry) {
+  delete() {
+    console.log('Delete ', this.problemDelete);
+    this.problemService.deleteProblem(this.problemDelete).subscribe(
+      data=> {
+        console.log('Delete correctly');
+        this.getProblemsByCreator();
+      }, 
+      err => {
+        console.log('Error on delete problem');
+      }
+    );
+  }
+  open(registry, problem?) {
+    if(problem) { 
+      this.problemDelete = problem;
+    }
     this.modalService.open(registry).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {

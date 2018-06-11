@@ -16,6 +16,7 @@ export class UserContestComponent implements OnInit {
     private contestService: ContestService
   ) { }
   closeResult: string;
+  contestDelete: any;
   ngOnInit() {
     console.log('--------> desde el juez ! ---------->');
     this.getContestByCreator();
@@ -32,6 +33,9 @@ export class UserContestComponent implements OnInit {
       }
     );
   }
+  createContest(){
+    this.router.navigate(['/create-contest']);
+  }
   update(id){
     this.router.navigate(['create-contest/'+id]);
   }
@@ -39,8 +43,22 @@ export class UserContestComponent implements OnInit {
     console.log("CONFIRM");
     this.router.navigateByUrl("./problem");
   }
-
-  open(registry) {
+  delete() {
+    let contest = this.contestDelete;
+    this.contestService.deleteContest(contest).subscribe(
+      data => {
+        alert("Competencia borrada");
+        this.getContestByCreator();
+      }, 
+      err => {
+        console.log("No se ha borrado ");
+      }
+    );
+  }
+  open(registry, contest?) {
+    if(contest) {
+      this.contestDelete = contest;
+    }
     this.modalService.open(registry).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {

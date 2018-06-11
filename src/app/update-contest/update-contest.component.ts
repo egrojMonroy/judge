@@ -47,13 +47,13 @@ export class UpdateContestComponent implements OnInit {
   }
   update() {
     
-      this.contestUpdate.name = this.form.name, 
-      this.contestUpdate.startdate = this.now.toISOString(),
-      this.contestUpdate.enddate = this.end.toISOString(),
-      this.contestUpdate.type = this.form.type,
-      this.contestUpdate.problems = this.list
-     
-     
+      this.contestUpdate.name = this.form.name;
+      this.contestUpdate.startdate = this.now.toISOString();
+      this.contestUpdate.enddate = this.end.toISOString();
+      this.contestUpdate.type = this.form.type;
+      this.contestUpdate.problems = this.list;
+      this.contestUpdate.password = this.form.password; 
+      console.log('CONTEST UPDATE ', this.contestUpdate);
     this.contestService.updateContest( this.contestUpdate ).subscribe(
       data => {
         console.log("Updated Success");
@@ -71,10 +71,11 @@ export class UpdateContestComponent implements OnInit {
         console.log(data);
         this.now = new Date(data.startdate);
         this.end = new Date(data.enddate);
-        this.minStart = new Date(data.startdate);
+        this.minStart = new Date(Date.now()+(5*60*1000));
         this.minEnd = new Date(data.enddate);
         this.form.type = data.type;
         this.form.name = data.name;
+        this.form.password = data.password;
         this.list = data.problems;
         this.contestUpdate = data;
       }
@@ -84,7 +85,7 @@ export class UpdateContestComponent implements OnInit {
   outStartDate(){
     console.log('change',this.now);
     this.minEnd = this.now;
-    this.minEnd.setMinutes(this.now.getMinutes()+30);
+    //this.minEnd.setMinutes(this.now.getMinutes()+30);
     if(this.minEnd > this.end) {this.end = this.minEnd;}
     console.log(this.minEnd," ' ", this.maxEnd);
   }

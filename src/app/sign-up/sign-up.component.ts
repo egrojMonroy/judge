@@ -21,7 +21,6 @@ export class SignUpComponent implements OnInit {
   }
 
   register() {
-    console.log('---> usuario registar_--> ');
     this.authorization.userRegistry(this.user).subscribe(
       (ok) => {
         console.log('ok (:');

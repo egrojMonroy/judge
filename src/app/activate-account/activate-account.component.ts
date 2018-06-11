@@ -31,13 +31,12 @@ export class ActivateAccountComponent implements OnInit {
         this.key = params['key'];
       }
     )
-    console.log('---> key --> wee --> ', this.key);
     this.authorization.ActivateAccount(this.key).subscribe(
       (ok) => {
-        console.log('cuencta activada :)');
+        //console.log('Cuenta activada');
       },
       (error) => {
-        console.log('cuencta echa miercoles :(');
+        //console.log('Error on activate account');
       }
     );
   }

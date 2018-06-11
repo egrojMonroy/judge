@@ -1,43 +1,48 @@
 <div class =" create-problem " >
-  <div class="form-group" *ngIf="createdProblem;else content">
-    <h4>Crear problema</h4>
-    <label class="control-label" for="focusedInput">Nombre del problema</label>
-    <div class="inline">
-      <input class="form-control" type="text" [(ngModel)]="problem.name">
-    </div>
-<!--     
-    <div class="form-group">
-      <label class="control-label" for="focusedInput">Código solución</label>
-      <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" formenctype="multipart/form-data" #fileInput>
-      <small id="fileHelp" class="form-text text-muted">Los archivos tienen que tener la extencion .cpp o .java. Si es java la clase debe ser Main.</small>
-    </div> -->
-      
-    <hr>
-    <div class="custom-file">
-      <input type="file" class="custom-file-input" id="customFileLang" lang="es" (change)="onChange($event)">
-      <label class="custom-file-label" for="customFileLang">{{ pdfFile?pdfFile.name:'Seleccionar Archivo' }}</label>
-    </div>
-    <label class="control-label " for="exampleTextarea">Definicion del problema</label>
-    <textarea class="form-control" id="exampleTextarea" rows="8" [(ngModel)]="problem.definition"></textarea>
-    <label class="control-label " for="exampleTextarea">Definicion de la entrada </label>
-    <textarea class="form-control" id="exampleTextarea" rows="5" [(ngModel)]="problem.inputDef" ></textarea>
-    <label class="control-label " for="exampleTextarea">Definicion de la salida </label>
-    <textarea class="form-control" id="exampleTextarea" rows="5" [(ngModel)]="problem.outputDef"></textarea>
-    <hr>
-    <div class="inline">
+  <form>
+    <div class="form-group" *ngIf="createdProblem;else content">
+      <h4>Crear problema</h4>
+      <label class="control-label" for="focusedInput">Nombre del problema</label>
+      <div >
+        <input id="name" name="name" class="form-control"
+        required minlength="4" 
+        [(ngModel)]="problem.name" #name="ngModel" (blur)="onBlur()">
+          <div *ngIf="name.invalid && (name.dirty || name.touched)"
+          class="alert alert-danger">
+            <div *ngIf="name.errors.required">
+            Nombre es requerido.
+            </div>
+            <div *ngIf="name.errors.minlength">
+            El nombre debe ser de minimo 4 caracteres.
+            </div>
+          </div>
+      </div>
+      <hr>
+      <div class="custom-file reduce">
+        <input type="file" class="custom-file-input" id="customFileLang" lang="es" (change)="onChange($event)" required #file>
+        <label class="custom-file-label" for="customFileLang">{{ pdfFile ? pdfFile.name:'Seleccionar Archivo' }}</label>
+      </div>
+      <div class="col-ls-4" style="width: 20% ;display: inline-block"> <button class="btn btn-link" (click)="download()"> Descargar modelo</button></div>
+      <!-- <label class="control-label " for="exampleTextarea">Definicion del problema</label>
+      <textarea class="form-control" id="exampleTextarea" rows="8" [(ngModel)]="problem.definition"></textarea>
+      <label class="control-label " for="exampleTextarea">Definicion de la entrada </label>
+      <textarea class="form-control" id="exampleTextarea" rows="5" [(ngModel)]="problem.inputDef" ></textarea>
+      <label class="control-label " for="exampleTextarea">Definicion de la salida </label>
+      <textarea class="form-control" id="exampleTextarea" rows="5" [(ngModel)]="problem.outputDef"></textarea> -->
+      <hr>
+      <div class="inline">
         <span style="padding: 0px 10px 0px 0px "> Tiempo:</span>
-        <input class="form-control small-input" [(ngModel)]="problem.timelimit" type="number" min="1" max="10" value="10">
+        <input class="form-control small-input" [(ngModel)]="problem.timelimit" type="number" min="1" max="10" value="10" id="timelimit" name="timelimit" required>
         <span style="padding: 0px 10px 0px 10px "> s </span>
         <span style="padding: 0px 10px 0px 20px "> Dificultad:</span>
-        <input class="form-control small-input" [(ngModel)]="problem.level" type="number" min="1" max="5" value="1">
-    </div> 
-    <hr>
-    <div class = "padding-top">
-      <button (click)="createProblem()" class="btn btn-outline-primary btn-lg btn-block">Crear</button>
+        <input class="form-control small-input" [(ngModel)]="problem.level" type="number" min="1" max="5" value="1" id="level" name="level" required>
+      </div> 
+      <hr>
+      <div class = "padding-top">
+        <button (click)="createProblem()" class="btn btn-outline-primary btn-lg btn-block">Crear</button>
+      </div>
     </div>
-    
-    
-  </div>
+  </form>
   <ng-template #content> 
     <app-add-test-cases [problem]="problem" ></app-add-test-cases>
   </ng-template>

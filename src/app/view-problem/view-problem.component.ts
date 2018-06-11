@@ -1,31 +1,43 @@
+import { AuthorizationService } from './../services/authorization.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { UploadProblemService } from './../services/upload-problem.service'
 import { TestCaseService } from './../services/test-case.service'; 
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-view-problem',
   templateUrl: './view-problem.component.html',
   styleUrls: ['./view-problem.component.css']
 })
 export class ViewProblemComponent implements OnInit {
-  pdfSrc:any;
+  pdfSrc: any;
   constructor(
     private route: ActivatedRoute,
     private uploadProblemService: UploadProblemService,
-    private testCaseService: TestCaseService
+    private testCaseService: TestCaseService,
+    private _sanitizer: DomSanitizer,
+    private authorization: AuthorizationService
   ) { }
   id: Number;
   problem: any; 
   tests: any;
   resumePdfViewerObject: any;
+  account: any;
   ngOnInit() {
     this.id = parseInt(this.getId());
     this.getProblem(this.id);
+    this.pdfSrc = this.getProblemURL(this.id);
     this.getTestCases();
-    this.getPDF();
-     
+    this.authorization.getAccountInfo().subscribe(res => this.account = res);
+  }
+  hasAuthority(authority) {
+    if (!this.account) {
+      return false;
+    }
+    return this.account.authorities.includes(authority);
   }
   getPDF(){
     console.log("URL",this.uploadProblemService.getPDF());
@@ -52,6 +64,10 @@ export class ViewProblemComponent implements OnInit {
   getId(){
     const id = this.route.snapshot.paramMap.get('id');
     return id;
+  }
+  getProblemURL(id) {
+    const url = this.uploadProblemService.getProblemUrl(id);
+    return this._sanitizer.bypassSecurityTrustResourceUrl(url);
   }
   getProblem( id  ){
     console.log(id);
