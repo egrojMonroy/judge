@@ -12,7 +12,7 @@
                 <th>Inicio</th>
                 <th>Final</th>
                 <th>Tipo</th>
-                <th></th>
+                
               </tr>
             </thead>
             <tbody>
@@ -25,7 +25,7 @@
                 <td>{{comming.startdate |  date: 'dd/MM/yyyy HH:mm'}} </td>
                 <td>{{comming.enddate |  date: 'dd/MM/yyyy HH:mm'}}</td>
                 <td>{{comming.type}}</td>
-                <td>
+                <td *ngIf="hasAuthority('ROLE_USER')">
                   <button type="button" class="btn btn-link" (click)="open(comming.type=='privado'?registryPassword:registry,comming)">Registrese</button>
                 </td>
               </tr>

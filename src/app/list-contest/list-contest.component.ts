@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ContestService } from './../services/contest.service';
 import { RouterModule, Router } from '@angular/router';
+import { AuthorizationService } from '../services/authorization.service';
 @Component({
   selector: 'app-list-contest',
   templateUrl: './list-contest.component.html',
@@ -12,6 +13,7 @@ export class ListContestComponent implements OnInit {
   constructor( 
     private modalService: NgbModal ,
     private contestService: ContestService,
+    private authorization: AuthorizationService,
     private router: Router
   ) { }
   contestRegister: any;
@@ -20,10 +22,12 @@ export class ListContestComponent implements OnInit {
   login:any;
   registerContest$:any;
   coderContest$:any;
+  account: any;
   ngOnInit() {
     this.fillComming();
     this.fillPast();
     this.login = sessionStorage.getItem('login');
+    this.authorization.getAccountInfo().subscribe(res => this.account = res);
   }
   ngOnDestroy() {
     if(this.registerContest$) {
@@ -33,6 +37,14 @@ export class ListContestComponent implements OnInit {
       this.coderContest$.unsubscribe();
     }
     
+  }
+  hasAuthority(authority) {
+    //console.log("AUTH ");
+    if (!this.account) {
+      return false;
+    }
+    //console.log("AUTH ", this.account.authorities, authority);
+    return this.account.authorities.includes(authority);
   }
   click(id){
     let contestDate = new Date(id.startdate); 

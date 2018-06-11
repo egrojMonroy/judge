@@ -38,7 +38,7 @@
 
       <br>
       <div>
-        <a href="upload/{{problem.id}}"><button type="button" class="btn btn-primary" [disabled]="!hasAuthority('ROLE_USER')">Enviar</button></a>
+        <button type="button" class="btn btn-primary" [disabled]="!hasAuthority('ROLE_USER')" (click)="send(problem.id)">Enviar</button>
         <button type="button" class="btn btn-danger">Cancelar</button>
       </div>
   </div>  

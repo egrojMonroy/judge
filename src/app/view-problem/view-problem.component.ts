@@ -1,6 +1,6 @@
 import { AuthorizationService } from './../services/authorization.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { UploadProblemService } from './../services/upload-problem.service'
@@ -19,7 +19,8 @@ export class ViewProblemComponent implements OnInit {
     private uploadProblemService: UploadProblemService,
     private testCaseService: TestCaseService,
     private _sanitizer: DomSanitizer,
-    private authorization: AuthorizationService
+    private authorization: AuthorizationService,
+    private router: Router
   ) { }
   id: Number;
   problem: any; 
@@ -38,6 +39,9 @@ export class ViewProblemComponent implements OnInit {
       return false;
     }
     return this.account.authorities.includes(authority);
+  }
+  send(problemId) {
+    this.router.navigate(['/upload/'+problemId]);
   }
   getPDF(){
     console.log("URL",this.uploadProblemService.getPDF());
