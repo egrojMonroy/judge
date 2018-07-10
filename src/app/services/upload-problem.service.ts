@@ -94,11 +94,18 @@ export class UploadProblemService {
     problem.active = false;
     return this.updateProblem(problem);
   }
-  getAllProblems(){
+  getAllProblems(page, pagesize){
     let headers = this.getHeaders();
-    return this.webService.get(`${SERVER.PROBLEM}/active`,headers);
+    return this.webService.get(`${SERVER.PROBLEM}/active?page=${page}&size=${pagesize}`,headers);
   }
-
+  getTotalProblems(){
+    let headers = this.getHeaders();
+    return this.webService.get(`${SERVER.PROBLEM}/active`,headers).map(
+      data => {
+        return data.json().length;
+      }
+    );
+  }
   getProblemById(id){
     console.log('get id ',id);
     let headers = this.getHeaders();

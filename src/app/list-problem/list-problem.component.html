@@ -28,13 +28,7 @@
               </tr>
             </tbody>
           </table>
-          <!-- <pagination
-            [totalItems]="30"
-            [itemsPerPage]="15"
-            [(ngModel)]="currentPage"
-
-          >
-          </pagination> -->
+          <pagination [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" previousText="&lsaquo;" nextText="&rsaquo;" [(ngModel)]="currentPage" (pageChanged)="pageChange($event)"></pagination>
 
       <!-- </td> -->
       <!-- <td>

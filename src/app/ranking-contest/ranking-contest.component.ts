@@ -55,7 +55,7 @@ export class RankingContestComponent implements OnInit {
     );
   }
   fillProblems(){
-    this.problem$ = this.contestService.getProblems(this.contestId).subscribe(
+    this.problem$ = this.contestService.getProblems(this.contestId, 0, 100).subscribe(
       data => {
         console.log("Problems ",data);
         this.problems = data;

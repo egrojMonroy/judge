@@ -32,8 +32,7 @@
              
             </tbody>
           </table>
-
-
+          <pagination [totalItems]="totalItemsCurrent" [itemsPerPage]="itemsPerPage" previousText="&lsaquo;" nextText="&rsaquo;" [(ngModel)]="currentPageCurrent" (pageChanged)="pageComming($event)"></pagination>
       <br>
       <h4>Competencias pasadas</h4>
       <label class="title-l"></label>
@@ -60,6 +59,7 @@
             
           </tbody>
         </table>
+        <pagination [totalItems]="totalItemsPast" [itemsPerPage]="itemsPerPage" previousText="&lsaquo;" nextText="&rsaquo;" [(ngModel)]="currentPagePast" (pageChanged)="pagePast($event)"></pagination>
           </div>
     </div>
   </div>

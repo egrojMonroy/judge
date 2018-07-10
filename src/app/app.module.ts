@@ -22,6 +22,7 @@ import { RankingContestComponent } from './ranking-contest/ranking-contest.compo
 import { ViewProblemComponent } from './view-problem/view-problem.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { RankingComponent } from './ranking/ranking.component';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { HttpModule, RequestOptions, XHRBackend} from '@angular/http';
 import { WebService } from './services/web.service';
 import { LoadingMaskService } from './services/loading-mask-service.service';
@@ -111,6 +112,7 @@ export function httpServiceFactory(backend: XHRBackend, defaultOptions: RequestO
       appRoutes,
      // { enableTracing: true } // <-- debugging purposes only
     ),
+    PaginationModule.forRoot(),
     FormsModule,
     BrowserModule,
     TabsModule.forRoot(),

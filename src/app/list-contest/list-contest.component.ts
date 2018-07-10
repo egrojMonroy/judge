@@ -3,6 +3,8 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ContestService } from './../services/contest.service';
 import { RouterModule, Router } from '@angular/router';
 import { AuthorizationService } from '../services/authorization.service';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+
 @Component({
   selector: 'app-list-contest',
   templateUrl: './list-contest.component.html',
@@ -10,19 +12,34 @@ import { AuthorizationService } from '../services/authorization.service';
 })
 export class ListContestComponent implements OnInit {
   closeResult: string;
-  constructor( 
-    private modalService: NgbModal ,
-    private contestService: ContestService,
-    private authorization: AuthorizationService,
-    private router: Router
-  ) { }
   contestRegister: any;
+
+  itemsPerPage: number;
+  totalItemsCurrent: number;
+  totalItemsPast: number;
+  currentPageCurrent: number;
+  currentPagePast: number;
+
   pastContests: any;
   commingContests: any;
   login:any;
   registerContest$:any;
   coderContest$:any;
   account: any;
+  constructor( 
+    private modalService: NgbModal ,
+    private contestService: ContestService,
+    private authorization: AuthorizationService,
+    private router: Router
+  ) { 
+    this.itemsPerPage = 3;
+    this.currentPageCurrent = 0;
+    this.totalItemsCurrent = 15;
+    this.currentPagePast = 0;
+    this.totalItemsPast = 15;
+
+  }
+ 
   ngOnInit() {
     this.fillComming();
     this.fillPast();
@@ -37,6 +54,15 @@ export class ListContestComponent implements OnInit {
       this.coderContest$.unsubscribe();
     }
     
+  }
+  pageComming(event: any) {
+    this.currentPageCurrent = event.page;
+    this.fillComming();
+  }
+  pagePast(event: any) {
+    console.log("Lleg");
+    this.currentPagePast = event.page;
+    this.fillPast();
   }
   hasAuthority(authority) {
     //console.log("AUTH ");
@@ -82,14 +108,12 @@ export class ListContestComponent implements OnInit {
   confirm(pass) { 
     console.log('confirma', this.contestRegister.id, pass);
     if(this.contestRegister.type === 'privado') {
-      console.log('JEJEJ');
       this.contestService.getPassAccess(this.contestRegister.id,pass).subscribe(
         data => {
           console.log('first ', data)
           if(data) {
             this.registerContest$ = this.contestService.registerContest(this.contestRegister.id).subscribe(
-              res => {
-                console.log("Good Register", res);      
+              res => {   
                 alert("Registrado en el contest!");    
               }, 
               err => {
@@ -116,9 +140,13 @@ export class ListContestComponent implements OnInit {
   }
 
   fillComming() {
-    this.contestService.getRunningContest().subscribe(
+    this.contestService.getTotalItemsRunning().subscribe(
+      data => {this.totalItemsCurrent = data; }, 
+      err => console.log(err)
+    );
+    
+    this.contestService.getRunningContest(this.currentPageCurrent-1, this.itemsPerPage).subscribe(
       data=> {
-        console.log(data);
         this.commingContests = data;
       }, 
       err => {
@@ -128,14 +156,19 @@ export class ListContestComponent implements OnInit {
   }
 
   fillPast() {
-    this.contestService.getPastContest().subscribe(
+
+    this.contestService.getTotalItemsPast().subscribe(
+      data => {this.totalItemsPast = data; }, 
+      err => console.log(err)
+    );
+    this.contestService.getPastContest(this.currentPagePast-1, this.itemsPerPage).subscribe(
       data=> {
-        console.log(data);
+        
         this.pastContests = data;
       }, 
       err => {
         console.log("ERROR ",err);
-      }
+      } 
     );
   }
 

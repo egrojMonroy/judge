@@ -28,7 +28,7 @@ export class ContestService {
     let options = this.webService.getAuthHeaders( authorization );
     return this.webService.post(`${SERVER.CONTEST}`, data , options).map(
       res => {
-        console.log('RES', res);
+       // console.log('RES', res);
         return res.json();
       }
     );
@@ -37,7 +37,7 @@ export class ContestService {
     let Headers = this.getHeaders();
     return this.webService.post(`${SERVER.CONTEST}/verify?contestId=${contestId}&password=${password}`,null, Headers).map(
       data => {
-        console.log('In Service ',data);
+       // console.log('In Service ',data);
         return data.json();
         }
     );
@@ -59,12 +59,12 @@ export class ContestService {
     );
   }
   updateContest(data) {
-    console.log("UPDATE", data );
+   // console.log("UPDATE", data );
     let authorization = this.authorizationService.getToken();
     let options = this.webService.getAuthHeaders( authorization );
     return this.webService.put(`${SERVER.CONTEST}`, data , options).map(
       res => {
-        console.log('RES', res);
+       // console.log('RES', res);
         return res.json();
       }
     );
@@ -95,33 +95,51 @@ export class ContestService {
       }
     );
   }
-  getPastContest() { 
+  getPastContest(page, pagesize) { 
     let headers = this.getHeaders();
-    let page = 0; 
-    let pagesize = 100; 
     return this.webService.get(`${SERVER.CONTEST}/before?page=${page}&size=${pagesize}&sort=startdate,desc`,headers).map(
       data => {
+       // console.log('data', data);
         return data.json();
       }
     );
   }
-  getRunningContest() { 
+  getRunningContest(page, pagesize) { 
     let headers = this.getHeaders();
-    let page = 0; 
-    let pagesize = 100; 
-    console.log("URL RUNIGN0", `${SERVER.CONTEST}/after?page=${page}&size=${pagesize}&sort=startdate,desc`);
+   // console.log("URL RUNIGN0", `${SERVER.CONTEST}/after?page=${page}&size=${pagesize}&sort=startdate,desc`);
     return this.webService.get(`${SERVER.CONTEST}/after?page=${page}&size=${pagesize}&sort=startdate,desc`,headers).map(
       data => {
+       // console.log('contest', data.json().length);
         return data.json();
       }
     );
   }
-  getProblems(contestId) {
+  getTotalItemsRunning(){
     let headers = this.getHeaders();
-    return this.webService.get(`${SERVER.CONTEST}/problems?contestId=${contestId}`,headers).map(
+    return this.webService.get(`${SERVER.CONTEST}/after`, headers).map(
+      res => { return res.json().length; }
+    );
+  }
+  getTotalItemsPast(){
+    let headers = this.getHeaders();
+    return this.webService.get(`${SERVER.CONTEST}/before`, headers).map(
+      res => { return res.json().length; }
+    );
+  }
+  getProblems(contestId, page, pagesize) {
+    let headers = this.getHeaders();
+    return this.webService.get(`${SERVER.CONTEST}/problems?page=${page}&size=${pagesize}&contestId=${contestId}`,headers).map(
       data => {
         return data.json();
       }
     ); 
+  }
+  getTotalItemsContest(contestId){
+    let headers = this.getHeaders();
+    return this.webService.get(`${SERVER.CONTEST}/problems?contestId=${contestId}`,headers).map(
+      data => {
+        return data.json().length;
+      }
+    );
   }
 }
