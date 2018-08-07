@@ -2,7 +2,6 @@ import { Angular2Csv } from 'angular2-csv';
 import { Component, OnInit } from '@angular/core';
 import { StatusService} from './../services/status.service';
 
-import { Angular5Csv } from 'angular5-csv/Angular5-csv';
 
 @Component({
   selector: 'app-ranking',
