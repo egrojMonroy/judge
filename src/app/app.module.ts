@@ -50,6 +50,7 @@ import { TeacherGuard } from './../guards/teacher.guard';
 import { UserGuard } from './../guards/user.guard';
 import { UpdateProblemComponent } from './update-problem/update-problem.component';
 
+
 const appRoutes: Routes = [
   { path: '', redirectTo: '/list-contest', pathMatch: 'full' },
   { path: 'sign-in', component: SignInComponent },
