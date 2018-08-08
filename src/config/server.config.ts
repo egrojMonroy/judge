@@ -3,7 +3,8 @@
  */
 export const SERVER = (function() {
   const URL = {
-   BASE: 'http://localhost:9090/api'
+  //  BASE: 'http://localhost:9090/api'
+    BASE: 'http://52.3.18.3:9090/api'
   };
   const AUTHENTICATE = 'authenticate';
   const ACCOUNT = 'account';
@@ -17,7 +18,6 @@ export const SERVER = (function() {
   const CODER = 'coders';
   const USER = 'users';
   const AUTHORITIES = 'authorities';
-  // users / authorities
   const RESET_PASSWORD_INIT = 'reset-password/init';
   const RESET_PASSWORD_FINISH = 'reset-password/finish';
   const USER_REGISTER = 'register';
