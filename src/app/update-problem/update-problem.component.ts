@@ -23,8 +23,15 @@ export class UpdateProblemComponent implements OnInit {
   createdProblem: boolean;
   pdfFile: any;
   id: any;
+  codeTest: any; 
+  inputTest: any;
+  language: any;
+  nameGood:any; 
+  status:Number;
+  fileGood:any;
+  time = '';
   ngOnInit() {
-    this.problem = new problemModel(6,1);
+    this.problem = new problemModel(6,6,1);
     this.createdProblem = true;
     this.id = this.getId();
     this.getProblem(this.id);
@@ -88,6 +95,42 @@ export class UpdateProblemComponent implements OnInit {
     
     console.log(this.pdfFile);
     }
+  }
+  onChangeCode(event) {
+    const file = event.srcElement.files;
+    this.codeTest = file[0];
+    this.fileGood = true;
+    console.log(this.codeTest);
+
+  }
+  onChangeInput(event) {
+    const file = event.srcElement.files;
+    this.inputTest = file[0];
+    this.fileGood = true;
+    console.log(this.inputTest);
+    
+  }
+  sendCode(){
+    this.time = '';
+    const formData = new FormData();
+    console.log(this.codeTest, this.inputTest, this.language);
+      formData.append('reportFile', this.codeTest);
+      formData.append('inputFile', this.inputTest);
+      this.uploadProblemService.uploadTestCode(formData, this.language).subscribe(
+        data => {
+          console.log('console log ', data.json());
+          this.time = data.json() == '0'? '0.00': data.json() ;
+          if(this.language.includes('java')) {
+            this.problem.timelimitjava = Math.ceil( +this.time + 0.01 );
+          } else {
+            this.problem.timelimit =   Math.ceil( +this.time + 0.01 );
+          }
+        },
+        err => {
+          console.log('ERR', err);
+        }
+      );
+    
   }
 }
 

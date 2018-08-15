@@ -38,6 +38,12 @@ export class UploadProblemService {
     console.log('Is uploading');
     return this.webService.post(`${SERVER.PROBLEM}/upload?problemId=${id}`, formData, headers);
   }
+  uploadTestCode(formData, language ) {
+    const token = this.authorizationService.getToken();
+    const headers = this.webService.getAuthHeadersWithoutContentType(token);
+    console.log('LANGUAGE ', language);
+    return this.webService.post(`${SERVER.CREATE_CODE}/time?language=${language}`, formData, headers);
+  }
   getPDF(){
     const headers = this.getHeaders();
     console.log("DFSAA");

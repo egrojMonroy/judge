@@ -269,3 +269,11 @@ h4{
     padding-top: 89px;
     vertical-align: top;
 }
+.half {
+    width: 45% !important;
+    display: inline-block !important;
+}
+.img {
+    height: 12px;
+    width: 12px;
+}

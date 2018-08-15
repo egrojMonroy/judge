@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { StatusService } from './../services/status.service'; 
 import { ContestService } from './../services/contest.service';
+import { AuthorizationService } from '../services/authorization.service';
 @Component({
   selector: 'app-ranking-contest',
   templateUrl: './ranking-contest.component.html',
@@ -10,14 +11,21 @@ export class RankingContestComponent implements OnInit {
   @Input() contestId;
   constructor(
     private statusService: StatusService,
-    private contestService: ContestService
+    private contestService: ContestService,
+    private authorization: AuthorizationService,
+    
   ) { }
+  login: any;
+  account: any;
+  flag: boolean = false; 
   countProblems = [1,2,3,4,5,6,7,8];
   list: any;
   problems: any;
   status$: any;
   problem$: any;
   ngOnInit() {
+    this.login = sessionStorage.getItem('login');
+    this.authorization.getAccountInfo().subscribe(res => this.account = res);
     this.fillList();
     this.fillProblems();
   }
@@ -45,6 +53,14 @@ export class RankingContestComponent implements OnInit {
        return 0;
     }
  }
+ hasAuthority(authority) {
+  //console.log("AUTH ");
+  if (!this.account) {
+    return false;
+  }
+  //console.log("AUTH ", this.account.authorities, authority);
+  return this.account.authorities.includes(authority);
+}
   fillList(){
     this.status$ = this.statusService.getPositionContest(this.contestId).subscribe(
       data => { 

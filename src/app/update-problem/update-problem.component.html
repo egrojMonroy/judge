@@ -1,6 +1,6 @@
 <div class =" create-problem " >
   <div class="form-group" *ngIf="createdProblem;else content">
-    <h4>Crear problema</h4>
+    <h4>Actualizar problema</h4>
     <label class="control-label" for="focusedInput">Nombre del problema</label>
     <div class="inline">
       <input class="form-control" type="text" [(ngModel)]="problem.name">
@@ -25,12 +25,37 @@
     <label class="control-label " for="exampleTextarea">Definicion de la salida </label>
     <textarea class="form-control" id="exampleTextarea" rows="5" [(ngModel)]="problem.outputDef"></textarea> -->
     <hr>
+     
+    <label class="control-label" >Prueba en cuánto tiempo corre el código </label>
+    <br>
+    <div class="custom-file half">
+      <input type="file" class="custom-file-input" id="customFileLang" lang="es" (change)="onChangeCode($event)" required #file>
+      <label class="custom-file-label" for="customFileLang">{{ codeTest ? codeTest.name:'código de prueba ' }}</label>
+    </div>
+    <div class="custom-file half">
+      <input type="file" class="custom-file-input" id="customFileLang" lang="es" (change)="onChangeInput($event)" required #file>
+      <label class="custom-file-label" for="customFileLang">{{ inputTest ? inputTest.name:'entrada de prueba' }}</label>
+    </div>
+    
+    <div class="col-lg-12 inline" style="padding-top: 14px;">
+        <label for="select" class="col-lg-2 ">Lenguaje </label>
+      <select class="form-control col-lg-6 padding: 0px 10px 0px 20px" id="select" name="language" [(ngModel)]="language">
+        <option value="java">Java 1.8.0</option>
+        <option value="cpp">C++ -fno-asm -O2 -Wall -lm --static -std=c++11 -DONLINE_JUDGE</option>
+      </select>
+      <button type="button" class="btn btn-primary " style="margin-left: 15px;" (click)="sendCode()" >Probar</button>
+      <div *ngIf="time!=''" style="margin-left: 15px; display: inline" > {{time}}s </div>
+    </div>
+    <hr>
     <div class="inline">
-        <span style="padding: 0px 10px 0px 0px "> Tiempo:</span>
-        <input class="form-control small-input" [(ngModel)]="problem.timelimit" type="number" min="1" max="10" value="10">
-        <span style="padding: 0px 10px 0px 10px "> s </span>
-        <span style="padding: 0px 10px 0px 20px "> Dificultad:</span>
-        <input class="form-control small-input" [(ngModel)]="problem.level" type="number" min="1" max="5" value="1">
+      <span style="padding: 0px 10px 0px 0px "> Tiempo límite c++:</span>
+      <input class="form-control small-input" [(ngModel)]="problem.timelimit" type="number" min="1" max="10" value="10" id="timelimit" name="timelimit" required>
+      <span style="padding: 0px 10px 0px 10px "> s <img src="assets/info.png" class="img" tooltip="Tiempo límite para las soluciones en C++." ></span> 
+      <span style="padding: 0px 10px 0px 0px "> Tiempo límite java:</span>
+      <input class="form-control small-input" [(ngModel)]="problem.timelimitjava" type="number" min="1" max="10" value="10" id="timelimitjava" name="timelimitjava" required>
+      <span style="padding: 0px 10px 0px 10px "> s <img src="assets/info.png" class="img" tooltip="Tiempo límite para las soluciones en Java."></span>
+      <span style="padding: 0px 10px 0px 20px "> Dificultad:</span>
+      <input class="form-control small-input" [(ngModel)]="problem.level" type="number" min="1" max="5" value="1" id="level" name="level" required> <span> <img src="assets/info.png" class="img" tooltip="La dificultad va de 1, lo más fácil, a 5, lo más díficil."> </span>
     </div> 
     <hr>
     <div class = "padding-top">

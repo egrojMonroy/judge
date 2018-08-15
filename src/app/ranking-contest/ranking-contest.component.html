@@ -5,6 +5,8 @@
           <tr>
             <th>Posicion</th>
             <th>Concursante</th>
+            <th *ngIf="flag">Nombre<th>
+            <th *ngIf="flag">Apellido</th>
             <th>Resueltos</th>
             <th *ngFor="let problem of problems">
               <a routerLink="/view-problem/{{problem.id}}">
@@ -20,6 +22,8 @@
               {{i+1}}
             </td>
             <td>{{position.username}}</td>
+            <td *ngIf="flag">{{position.first_name}}</td>
+            <td *ngIf="flag">{{position.last_name}}</td>
             <td>{{position.accepteds}}</td>
             <td [ngClass]="{'accepted': getBooleanAC(position.data[problem.name]), 'error': getBooleanWA(position.data[problem.name])}"  *ngFor="let problem of problems">
               {{position.data[problem.name]?position.data[problem.name].cout:0}}/{{position.data[problem.name]?position.data[problem.name].date:0}}  
@@ -27,6 +31,10 @@
           </tr>
         </tbody>
     </table> 
+    <div class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" [(ngModel)]="flag" id="customCheck1">
+      <label class="custom-control-label" for="customCheck1">Vista completa de la tabla</label>
+    </div>
     
   </div>
 

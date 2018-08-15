@@ -22,6 +22,7 @@ export class AddTestCasesComponent implements OnInit {
       data=>{
         console.log('List ', data.json());
         this.list = data.json();
+        this.count = this.list.length + 10;
       }, 
       err =>{
         console.log('Error ', err);

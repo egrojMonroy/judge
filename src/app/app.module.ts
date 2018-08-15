@@ -11,7 +11,7 @@ import { StatusComponent } from './status/status.component';
 import { UploadProblemComponent } from './upload-problem/upload-problem.component';
 import { ListProblemComponent } from './list-problem/list-problem.component';
 import { ListContestComponent } from './list-contest/list-contest.component';
-import { TabsModule } from 'ngx-bootstrap';
+import { TabsModule, TooltipModule } from 'ngx-bootstrap';
 import { CreateComponent } from './create/create.component';
 import { CreateContestComponent } from './create-contest/create-contest.component';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -36,7 +36,7 @@ import { UserContestComponent } from './user-contest/user-contest.component';
 import { CalendarModule} from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddProblemsComponent } from './add-problems/add-problems.component';
-import { MatAutocompleteModule, MatInputModule,  } from '@angular/material';
+import { MatAutocompleteModule, MatInputModule, MatIconRegistry,  } from '@angular/material';
 import { AutoCompleteModule} from 'primeng/autocomplete';
 import { StatusService } from './services/status.service';
 import { UserComponent } from './user/user.component';
@@ -117,6 +117,7 @@ export function httpServiceFactory(backend: XHRBackend, defaultOptions: RequestO
     FormsModule,
     BrowserModule,
     TabsModule.forRoot(),
+    TooltipModule.forRoot(),
     PdfViewerModule,
     HttpModule,
     CalendarModule,
