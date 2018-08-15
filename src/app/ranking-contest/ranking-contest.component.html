@@ -31,7 +31,7 @@
           </tr>
         </tbody>
     </table> 
-    <div class="custom-control custom-checkbox">
+    <div class="custom-control custom-checkbox" *ngIf="hasAuthority('ROLE_ADMIN') || hasAuthority('ROLE_TEACHER')">
       <input type="checkbox" class="custom-control-input" [(ngModel)]="flag" id="customCheck1">
       <label class="custom-control-label" for="customCheck1">Vista completa de la tabla</label>
     </div>
