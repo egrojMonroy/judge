@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { StatusService } from './../services/status.service'; 
 import { ContestService } from './../services/contest.service';
 import { AuthorizationService } from '../services/authorization.service';
+import { Angular2Csv } from 'angular2-csv';
 @Component({
   selector: 'app-ranking-contest',
   templateUrl: './ranking-contest.component.html',
@@ -86,5 +87,32 @@ export class RankingContestComponent implements OnInit {
   getBooleanWA(a){
     if(a) return a.veredict != "ACCEPTED";
     return false;
+  }
+
+  getCsvOfContest() {
+    console.log("LIST" , this.list);
+    console.log("Download");
+    let options = {
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalseparator: '.',
+      showLabels: false,
+      headers: [],
+      showTitle: true,
+      title: 'Contest',
+      useBom: false,
+      removeNewLines: true,
+      keys: ['User','Nombre', '#Problemas resueltos']
+    };
+    let xx = [];
+    for( let i of this.list ) {
+      let p = {
+        "User": i.username, 
+        "Nombre": i.firstName + ' ' + i.secondName, 
+        "#Problemas resueltos": i.accepteds, 
+      };
+      xx.push(p);
+    }
+    new Angular2Csv(xx, 'Ranking', options);
   }
 }

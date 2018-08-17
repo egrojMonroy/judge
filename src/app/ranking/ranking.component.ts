@@ -38,8 +38,6 @@ export class RankingComponent implements OnInit {
     this.statusService.getRank().subscribe(
       data => {
         this.list = data;
-        new Angular2Csv(data, 'res');
-        console.log("HEEEEY",this.list);
       }, 
       err =>   {
         console.log("ERROR ", err);
