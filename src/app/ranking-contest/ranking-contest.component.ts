@@ -22,12 +22,14 @@ export class RankingContestComponent implements OnInit {
   countProblems = [1,2,3,4,5,6,7,8];
   list: any;
   problems: any;
+  contest: any;
   status$: any;
   problem$: any;
   ngOnInit() {
     this.login = sessionStorage.getItem('login');
     this.authorization.getAccountInfo().subscribe(res => this.account = res);
     this.fillList();
+    this.getContest();
     this.fillProblems();
   }
   ngOnDestroy(){
@@ -79,6 +81,17 @@ export class RankingContestComponent implements OnInit {
       }
     );
   }
+  getContest() {
+    this.contestService.getOneContest(this.contestId).subscribe(
+      data => {
+        this.contest = data;
+        console.log('CONTEST ', this.contest);
+      }, 
+      err => {
+        console.log(err);
+      }
+    );
+  }
   getBooleanAC(a){
     if(a) return a.veredict == "ACCEPTED";
     return false;
@@ -97,22 +110,37 @@ export class RankingContestComponent implements OnInit {
       quoteStrings: '"',
       decimalseparator: '.',
       showLabels: false,
-      headers: [],
+      headers: ['User','Nombre', '#Problemas resueltos'],
       showTitle: true,
-      title: 'Contest',
+      title: this.contest.name,
       useBom: false,
       removeNewLines: true,
       keys: ['User','Nombre', '#Problemas resueltos']
     };
+    let problems = [];
+    for(let i of this.contest.problems) {
+      options.headers.push(i.name);
+      options.keys.push(i.name);
+      problems.push(i.name);
+    }
     let xx = [];
     for( let i of this.list ) {
       let p = {
         "User": i.username, 
-        "Nombre": i.firstName + ' ' + i.secondName, 
-        "#Problemas resueltos": i.accepteds, 
+        "Nombre": i.firstName + ' ' + i.lastName, 
+        "#Problemas resueltos": i.accepteds
       };
+      
+      for( let j of problems) { 
+        p[j] = i.data[j] ? i.data[j].veredict : '-';
+      }
+      // for(let j in i.data) {
+      //   p[j] = i.data[j] ? i.data[j].veredict : '';
+      // }
+      console.log('ppppp', p);
       xx.push(p);
     }
+    console.log(xx);
     new Angular2Csv(xx, 'Ranking', options);
   }
 }
