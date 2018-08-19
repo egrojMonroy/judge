@@ -3,8 +3,8 @@
  */
 export const SERVER = (function() {
   const URL = {
-  //  BASE: 'http://localhost:9090/api'
-    BASE: 'http://52.3.18.3:9090/api'
+     // BASE: 'http://localhost:9090/api'
+     BASE: 'http://52.3.18.3:9090/api'
   };
   const AUTHENTICATE = 'authenticate';
   const ACCOUNT = 'account';
@@ -22,6 +22,7 @@ export const SERVER = (function() {
   const RESET_PASSWORD_FINISH = 'reset-password/finish';
   const USER_REGISTER = 'register';
   const ACTIVATE_ACCOUNT = 'activate';
+  const DOWNLOAD_CODE = 'codes/get';
 
   return {
     URL_BASE: URL.BASE,
@@ -40,6 +41,7 @@ export const SERVER = (function() {
     RESET_PASSWORD_INIT: `${URL.BASE}/${ACCOUNT}/${RESET_PASSWORD_INIT}`,
     RESET_PASSWORD_FINISH: `${URL.BASE}/${ACCOUNT}/${RESET_PASSWORD_FINISH}`,
     USER_REGISTER: `${URL.BASE}/${USER_REGISTER}`,
-    ACTIVATE_ACCOUNT: `${URL.BASE}/${ACTIVATE_ACCOUNT}`
+    ACTIVATE_ACCOUNT: `${URL.BASE}/${ACTIVATE_ACCOUNT}`,
+    DOWNLOAD_CODE: `${URL.BASE}/${DOWNLOAD_CODE}`
   };
 }) ();
