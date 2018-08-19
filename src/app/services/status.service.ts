@@ -41,4 +41,8 @@ export class StatusService {
       }
     );
   }
+  getCode(id) {
+    let headers = this.getHeaders();
+    return this.webService.get(`${SERVER.DOWNLOAD_CODE}/${id}`, headers);
+  }
 }
