@@ -13,7 +13,7 @@ export class UserService {
   ) { }
 
   allUsers() {
-    return this.webService.get(SERVER.USER,
+    return this.webService.get(`${SERVER.USER}?page=0&size=1000`,
       this.webService.getAuthHeaders(this.authorization.getToken())).map(
       (ok) => {
         return ok.json();
