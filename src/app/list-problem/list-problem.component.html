@@ -1,4 +1,5 @@
 <div class="jumbotron">
+  <div class="right center" *ngIf="contestView"> <h4>{{ days==='Contest concluido'? days: ( (days!=0? (days+' dias, '): '') +hours+':'+minutes+':'+seconds)}}</h4> </div>
   <div class="center">
     <!-- <table> -->
     <!-- <tbody>

@@ -21,6 +21,10 @@ export class RankingContestComponent implements OnInit {
   flag: boolean = false; 
   countProblems = [1,2,3,4,5,6,7,8];
   list: any;
+  days: any;
+  hours: any;
+  minutes: any; 
+  seconds: any;
   problems: any;
   contest: any;
   status$: any;
@@ -31,6 +35,7 @@ export class RankingContestComponent implements OnInit {
     this.fillList();
     this.getContest();
     this.fillProblems();
+    
   }
   ngOnDestroy(){
     if( this.status$ ){
@@ -68,8 +73,8 @@ export class RankingContestComponent implements OnInit {
     this.status$ = this.statusService.getPositionContest(this.contestId).subscribe(
       data => { 
         this.list = data; 
-        console.log(data.sort(this.predicateBy("accepteds", "totalTime")));
-        console.log(data[0].data["String Task"]);
+        // console.log(data.sort(this.predicateBy("accepteds", "totalTime")));
+        // console.log(data[0].data["String Task"]);
       }
     );
   }
@@ -86,6 +91,7 @@ export class RankingContestComponent implements OnInit {
       data => {
         this.contest = data;
         console.log('CONTEST ', this.contest);
+        this.startTimer();
       }, 
       err => {
         console.log(err);
@@ -142,5 +148,19 @@ export class RankingContestComponent implements OnInit {
     }
     console.log(xx);
     new Angular2Csv(xx, 'Ranking', options);
+  }
+  startTimer() {
+    let countDownDate = new Date(this.contest.enddate);
+    console.log('Count', countDownDate);
+    let countDownTime = countDownDate.getTime();
+    setInterval(()=> {     
+      let now = new Date().getTime();
+      let distance = countDownTime - now;
+      this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      // console.log(this.hours+':'+this.minutes+':'+this.seconds);
+    }, 1000); 
   }
 }

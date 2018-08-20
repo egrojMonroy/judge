@@ -1,3 +1,5 @@
+<div class="jumbotron">
+<div class="right center"> <h4>{{ days==='Contest concluido'? days: ( (days!=0? (days+' dias, '): '') +hours+':'+minutes+':'+seconds)}}</h4> </div>
   <div class="center">
     <h4>Posiciones</h4>
     <table class="table table-striped table-hover ">
@@ -35,7 +37,9 @@
       <input type="checkbox" class="custom-control-input" [(ngModel)]="flag" id="customCheck1">
       <label class="custom-control-label" for="customCheck1">Vista completa de la tabla</label>
     </div>
-    <button type="button" (click)="getCsvOfContest()"  class="btn btn-primary">Descargar CSV</button>
+    <button type="button" (click)="getCsvOfContest()"  class="btn btn-primary" *ngIf="hasAuthority(ROLE_ADMIN) || hasAuthority(ROLE_TEACHER)">Descargar CSV</button>
   </div>
 
     
+
+</div>

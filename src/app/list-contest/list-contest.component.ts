@@ -73,10 +73,11 @@ export class ListContestComponent implements OnInit {
     return this.account.authorities.includes(authority);
   }
   click(id){
+    // console.log('IHDIH', id , this.account);
     let contestDate = new Date(id.startdate); 
     let now = new Date();
     console.log(contestDate , now);
-    if(contestDate > now) {
+    if(contestDate > now && id.creatorId !== this.account.id) {
       console.log("Contest no ha empezado aun");
       alert("El Contest no ha empezado aun");
     } else {

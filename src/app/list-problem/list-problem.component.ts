@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UploadProblemService } from './../services/upload-problem.service'; 
 import { ContestService } from './../services/contest.service';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { COMPOSITION_BUFFER_MODE } from '@angular/forms';
 
 @Component({
   selector: 'app-list-problem',
@@ -19,16 +20,24 @@ export class ListProblemComponent implements OnInit {
   list:any;
   @Input() contestView: boolean;
   @Input() contestId;
+  contest: any;
   currentPage=0;
   totalItems: number;
   itemsPerPage: number; 
+  days: any;
+  hours: any;
+  minutes: any;
+  seconds: any; 
   ngOnInit() {
     console.log("LLEGA QUE ",this.contestView, this.contestId);
     if(this.contestView) { 
       this.fillListContest();
+      this.getContest();
+      this.startTimer();
     } else {
       this.fillList();  
     }
+  
     
   }
   fillListContest() {
@@ -71,5 +80,39 @@ export class ListProblemComponent implements OnInit {
       this.fillList();
     }
     
+  }
+  
+  getContest() {
+    this.contestService.getOneContest(this.contestId).subscribe(
+      data => {
+        
+        this.contest = data;
+        this.startTimer();
+        console.log('CONTEST ', this.contest);
+      }, 
+      err => {
+        console.log(err);
+      }
+    );
+  }
+  startTimer() {
+    let countDownDate = new Date(this.contest.enddate);
+    // console.log('Count', countDownDate);
+    let countDownTime = countDownDate.getTime();
+    setInterval(()=> {     
+      let now = new Date().getTime();
+      let distance = countDownTime - now;
+      if(distance < 0 ) {
+        this.days = 'Contest concluido';
+      } else {
+      this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      }// console.log(this.hours+':'+this.minutes+':'+this.seconds);
+    }, 1000); 
+
+    
+
   }
 }

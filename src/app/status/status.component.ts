@@ -12,16 +12,18 @@ import { saveAs } from 'file-saver/FileSaver';
 export class StatusComponent implements OnInit {
 
   constructor(
-    private statusService: StatusService
+    private statusService: StatusService,
+    private authorization: AuthorizationService,
   ) { }
   list: any;
   sub:any;
   getAll$:any;
-
+  account: any;
   ngOnInit() {
     this.fillList();
     this.sub = Observable.interval(80000)
     .subscribe((val) => { this.fillList(); });
+    this.authorization.getAccountInfo().subscribe(res => this.account = res);
   }
   ngOnDestroy() {
     if(this.getAll$){
@@ -59,5 +61,13 @@ export class StatusComponent implements OnInit {
       },
       err=>console.log(err)
     );
+  }
+  hasAuthority(authority) {
+    //console.log("AUTH ");
+    if (!this.account) {
+      return false;
+    }
+    //console.log("AUTH ", this.account.authorities, authority);
+    return this.account.authorities.includes(authority);
   }
 }
