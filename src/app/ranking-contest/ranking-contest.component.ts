@@ -156,10 +156,14 @@ export class RankingContestComponent implements OnInit {
     setInterval(()=> {     
       let now = new Date().getTime();
       let distance = countDownTime - now;
+      if(distance < 0 ) {
+        this.days = 'Contest concluido';
+      } else {
       this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
       this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      }
       // console.log(this.hours+':'+this.minutes+':'+this.seconds);
     }, 1000); 
   }
