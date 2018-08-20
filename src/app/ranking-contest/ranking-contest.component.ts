@@ -66,15 +66,15 @@ export class RankingContestComponent implements OnInit {
   if (!this.account) {
     return false;
   }
-  //console.log("AUTH ", this.account.authorities, authority);
+  
   return this.account.authorities.includes(authority);
 }
   fillList(){
     this.status$ = this.statusService.getPositionContest(this.contestId).subscribe(
       data => { 
         this.list = data; 
-        // console.log(data.sort(this.predicateBy("accepteds", "totalTime")));
-        // console.log(data[0].data["String Task"]);
+        data.sort(this.predicateBy("accepteds", "totalTime"));
+        data[0].data["String Task"];
       }
     );
   }

@@ -35,7 +35,7 @@ export class StatusService {
   }
   getPositionContest(contestId){
     let headers = this.getHeaders();
-    return this.webService.get(`${SERVER.SUBMISSION}/subs?contestId=${contestId}`,headers).map(
+    return this.webService.get(`${SERVER.SUBMISSION}/subs?contestId=${contestId}`, headers).map(
       data => {
         return data.json();
       }
