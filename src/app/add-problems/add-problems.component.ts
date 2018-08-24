@@ -1,8 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Http } from '@angular/http';
 import { ContestService } from './../services/contest.service';
-import { FormControl } from '@angular/forms';
-import {AutoCompleteModule} from 'primeng/autocomplete';
 
 @Component({
   selector: 'app-add-problems',

@@ -26,13 +26,13 @@
             <td style="width:50%">
               <label class="control-label" for="focusedInput" >Fecha de inicio</label>
               <div class="inline">
-                <p-calendar [(ngModel)]="now" [minDate]="minStart" [maxDate]="maxStart" [showTime]="true" (focusout)="outStartDate()"  name="now" required></p-calendar>
+                <!-- <p-calendar [(ngModel)]="now" [minDate]="minStart" [maxDate]="maxStart" [showTime]="true" (focusout)="outStartDate()"  name="now" required></p-calendar> -->
               </div>          
             </td>
             <td style="width:50%">
               <label class="control-label" for="focusedInput" >Fecha de cierre</label>
               <div class="inline">
-                <p-calendar [(ngModel)]="end" [minDate]="now" [showTime]="true" name="end" required></p-calendar>
+                <!-- <p-calendar [(ngModel)]="end" [minDate]="now" [showTime]="true" name="end" required></p-calendar> -->
               </div>
             </td>
           </tr>
@@ -55,9 +55,9 @@
         <div>
           <div class="add-problem center">
             <h4 class="first">Agregar problemas <font color="red" size="2px">* Dos problemas minimo</font> </h4>
-            <p-autoComplete [(ngModel)]="problem" [suggestions]="filteredProblems" (completeMethod)="filterProblems($event)" field="name" [size]="30"
+            <!-- <p-autoComplete [(ngModel)]="problem" [suggestions]="filteredProblems" (completeMethod)="filterProblems($event)" field="name" [size]="30"
                 placeholder="Problemas" [minLength]="1" field="name" (onSelect)="addProblem($event)"></p-autoComplete>
-                
+                 -->
             <br>
             <div *ngIf="showMessage"
               class="alert alert-danger">
