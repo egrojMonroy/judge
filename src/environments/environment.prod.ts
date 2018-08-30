@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  BASE: 'http://localhost:9090/api'
+  BASE: 'http://192.168.46.128:9090/api'
 };
