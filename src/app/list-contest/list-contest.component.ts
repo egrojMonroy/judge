@@ -82,6 +82,9 @@ export class ListContestComponent implements OnInit {
       alert("El Contest no ha empezado aun");
     } else {
       console.log("deberia entrar normal");
+      if(this.hasAuthority('ROLE_ADMIN')) {
+        this.router.navigate(['view-contest/'+id.id]);
+      }
       this.coderContest$ = this.contestService.getAuthtoContest(id.id).subscribe(
         data=> {
           if(data) {

@@ -12,10 +12,9 @@
             <th>Resueltos</th>
             <th *ngFor="let problem of problems">
               <a routerLink="/view-problem/{{problem.id}}">
-                {{problem.id}}
+                {{problem.name}}
                 </a>
             </th>
-            
           </tr>
         </thead>
         <tbody>
