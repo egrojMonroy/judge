@@ -33,11 +33,10 @@ import { TestCaseService } from './services/test-case.service';
 import { AddTestCasesComponent } from './add-test-cases/add-test-cases.component';
 import { UserProblemComponent } from './user-problem/user-problem.component';
 import { UserContestComponent } from './user-contest/user-contest.component';
-import { CalendarModule} from 'primeng/calendar';
+//import { CalendarModule} from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddProblemsComponent } from './add-problems/add-problems.component';
-import { MatAutocompleteModule, MatInputModule, MatIconRegistry,  } from '@angular/material';
-import { AutoCompleteModule} from 'primeng/autocomplete';
+import { MatAutocompleteModule, MatInputModule} from '@angular/material';
 import { StatusService } from './services/status.service';
 import { UserComponent } from './user/user.component';
 import { UserService } from './services/user.service';
@@ -120,12 +119,11 @@ export function httpServiceFactory(backend: XHRBackend, defaultOptions: RequestO
     TooltipModule.forRoot(),
     PdfViewerModule,
     HttpModule,
-    CalendarModule,
+    // CalendarModule,
     MatInputModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    BrowserAnimationsModule,
-    AutoCompleteModule
+    BrowserAnimationsModule
   ],
   providers: [
     WebService,

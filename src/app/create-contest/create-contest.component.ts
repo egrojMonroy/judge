@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Timestamp } from 'rxjs';
 import { contestModel } from './contestModel';
 import { ContestService } from './../services/contest.service';
-import { DatePipe } from '@angular/common';
-import { CombineLatestOperator } from 'rxjs/operators/combineLatest';
-import { AutoCompleteModule} from 'primeng/autocomplete';
-import { RouterModule, Router } from '@angular/router';
+import { Router } from '@angular/router';
 enum Status {
   NONE = -1,
   ERROR,
@@ -16,8 +12,7 @@ enum Status {
   templateUrl: './create-contest.component.html',
   styleUrls: ['./create-contest.component.css']
 })
-export class CreateContestComponent implements OnInit {
-  
+export class CreateContestComponent implements OnInit {  
   
   constructor(
     private contestService : ContestService,
