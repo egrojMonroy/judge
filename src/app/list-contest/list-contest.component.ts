@@ -76,23 +76,27 @@ export class ListContestComponent implements OnInit {
     // console.log('IHDIH', id , this.account);
     let contestDate = new Date(id.startdate); 
     let now = new Date();
-    console.log(contestDate , now);
-    if(contestDate > now && id.creatorId !== this.account.id) {
-      console.log("Contest no ha empezado aun");
-      alert("El Contest no ha empezado aun");
+    console.log(id.creatorId, this.account.id);
+    if (id.creatorId === this.account.id) {
+      this.router.navigate(['view-contest/' + id.id]);
     } else {
-      console.log("deberia entrar normal");
-      this.coderContest$ = this.contestService.getAuthtoContest(id.id).subscribe(
-        data=> {
-          if(data) {
-            this.router.navigate(['view-contest/'+id.id]);
-          } else {
-            alert("No se encuentra registrado en el contest");
-          }
+        if (contestDate > now) {
+          // console.log("Contest no ha empezado aun");
+          alert("El Contest no ha empezado aun");
+        } else {
+          // console.log("deberia entrar normal");
+          this.coderContest$ = this.contestService.getAuthtoContest(id.id).subscribe(
+            data=> {
+              if(data) {
+                this.router.navigate(['view-contest/'+id.id]);
+              } else {
+                alert("No se encuentra registrado en el contest");
+              }
+            }
+          );
+          
         }
-      );
-      
-    }
+      }
   }
   clickPast(id){
     let contestDate = new Date(id.startdate); 

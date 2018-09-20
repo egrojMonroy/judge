@@ -1,10 +1,12 @@
+import { environment } from "../environments/environment.prod";
+
 /**
  * Constant variable which saves server default data configuration like Server Urls and endpoints.
  */
 export const SERVER = (function() {
   const URL = {
-     // BASE: 'http://localhost:9090/api'
-     BASE: 'http://52.3.18.3:9090/api'
+     BASE: environment.BASE
+    //  BASE: 'http://52.3.18.3:9090/api'
   };
   const AUTHENTICATE = 'authenticate';
   const ACCOUNT = 'account';

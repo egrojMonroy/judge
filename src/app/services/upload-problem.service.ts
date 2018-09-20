@@ -102,7 +102,7 @@ export class UploadProblemService {
   }
   getAllProblems(page, pagesize){
     let headers = this.getHeaders();
-    return this.webService.get(`${SERVER.PROBLEM}/active?page=${page}&size=${pagesize}`,headers);
+    return this.webService.get(`${SERVER.PROBLEM}/inactive?page=${page}&size=${pagesize}`,headers);
   }
   getTotalProblems(){
     let headers = this.getHeaders();
